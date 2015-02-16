@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical" >
+
+    <!-- Include Action Bar -->
+
+    <include
+        android:id="@+id/include1"
+        android:layout_height="wrap_content"
+        layout="@layout/actionbar_layout" />
+
+    <!--  -->
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/include1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+      
+
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/include1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="460dp"
+            android:background="#F8F8F8"
+            android:orientation="vertical" >
+
+            <CheckBox
+                android:id="@+id/cb_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/include1"
+                android:text="Select All Test"
+                android:textColor="#000000" /> 
+                
+            <CheckBox
+                android:id="@+id/cb_quants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/include1"
+                android:text="Quantiative"
+                android:textColor="#000000" />
+
+            <CheckBox
+                android:id="@+id/cb_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/include1"
+                android:text="C"
+                android:textColor="#000000" />
+
+            <CheckBox
+                android:id="@+id/cb_cpp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/include1"
+                android:text="C++"
+                android:textColor="#000000" />
+
+            <CheckBox
+                android:id="@+id/cb_java"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/include1"
+                android:text="Java"
+                android:textColor="#000000" />
+
+            <CheckBox
+                android:id="@+id/cb_html"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/include1"
+                android:text="HTML"
+                android:textColor="#000000" />
+
+            <CheckBox
+                android:id="@+id/cb_vl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/include1"
+                android:text="Verbal And Logical"
+                android:textColor="#000000" />
+
+            <CheckBox
+                android:id="@+id/cb_os"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/include1"
+                android:text="Operating System"
+                android:textColor="#000000" />
+
+            <CheckBox
+                android:id="@+id/cb_dbms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/include1"
+                android:text="Database Management System"
+                android:textColor="#000000" />
+
+            <CheckBox
+                android:id="@+id/cb_dsa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/include1"
+                android:text="Data Structure"
+                android:textColor="#000000" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+     <Button
+         android:id="@+id/startbtn"
+         android:layout_width="match_parent"
+         android:layout_height="45dp"
+         android:layout_alignLeft="@+id/scrollView1"
+         android:layout_alignParentBottom="true"
+         android:layout_below="@+id/scrollView1"
+         android:background="@drawable/shape1"
+         android:text="Start Test"
+         android:textSize="17dp" />
+        
+       </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

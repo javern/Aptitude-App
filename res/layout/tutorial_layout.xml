@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical" >
+
+    <!-- Include Action Bar -->
+
+    <include
+        android:id="@+id/include1"
+        android:layout_height="wrap_content"
+        layout="@layout/actionbar_layout" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/include1"
+        android:orientation="vertical" 
+          android:background="#F8F8F8">
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/include1"
+              android:background="#F8F8F8" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" 
+                  android:background="#F8F8F8">
+
+                <Button
+                    android:id="@+id/btn_score_quants"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                      android:background="@drawable/shape"
+                    android:text="@string/quants" />
+
+                <Button
+                    android:id="@+id/btn_score_c"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                      android:background="@drawable/shape"
+                    android:text="@string/c" />
+
+                <Button
+                    android:id="@+id/btn_score_cpp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                      android:background="@drawable/shape"
+                    android:text="@string/cpp" />
+
+                <Button
+                    android:id="@+id/btn_score_java"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                      android:background="@drawable/shape"
+                    android:text="@string/java" />
+
+                <Button
+                    android:id="@+id/btn_score_html"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                      android:background="@drawable/shape"
+                    android:text="@string/html" />
+
+               
+
+                <Button
+                    android:id="@+id/btn_score_os"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                      android:background="@drawable/shape"
+                    android:text="@string/os" />
+
+                <Button
+                    android:id="@+id/btn_score_dbms"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                      android:background="@drawable/shape"
+                    android:text="@string/dbms" />
+
+                <Button
+                    android:id="@+id/btn_score_datastructure"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                      android:background="@drawable/shape"
+                    android:text="@string/dsa" />
+
+                <Button
+                    android:id="@+id/btn_score_interview"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                      android:background="@drawable/shape"
+                    android:text="Interview" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

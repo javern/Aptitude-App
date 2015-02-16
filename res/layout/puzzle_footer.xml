@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/FooterBar"
+  android:background="#F8F8F8">
+
+    <Button
+        android:id="@+id/btn_prev1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:background="@drawable/back"
+        android:enabled="false" />
+
+    <Button
+        android:id="@+id/btn_showans"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.45"
+        android:background="#7EBE27"
+        android:text="Show Answer" />
+
+    <Button
+        android:id="@+id/btn_next1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:background="@drawable/next" />
+
+</LinearLayout>

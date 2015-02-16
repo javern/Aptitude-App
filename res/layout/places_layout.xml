@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <!-- Include Action Bar -->
+
+    <include
+        android:id="@+id/include1"
+        android:layout_height="wrap_content"
+        layout="@layout/actionbar_layout" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/include1"
+      android:background="#F8F8F8">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/include1"
+            android:background="#F8F8F8"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/btn_os"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_margin="40dp"
+                     android:background="#F8F8F8"
+                android:drawableTop="@drawable/os"
+                android:gravity="center"
+                android:text="@string/os"
+                android:textAppearance="@style/DashboardButton" />
+
+            <Button
+                android:id="@+id/btn_dsa"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_margin="40dp"
+                android:background="#F8F8F8"
+                android:drawableTop="@drawable/dsa1"
+                android:gravity="center"
+                android:text="@string/dsa"
+ android:textAppearance="@style/DashboardButton"/>
+
+            <Button
+                android:id="@+id/btn_dbms"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                 android:layout_margin="40dp"
+                android:drawableTop="@drawable/database"
+                android:gravity="center"
+                       android:background="#F8F8F8"
+                android:text="@string/dbms" 
+                 android:textAppearance="@style/DashboardButton"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

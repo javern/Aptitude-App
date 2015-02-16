@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical" >
+
+    <!-- Include Action Bar -->
+  <include
+        android:id="@+id/include1"
+        android:layout_height="wrap_content"
+        layout="@layout/actionbar_layout" />
+
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/include1" >
+   
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/include1"
+        android:background="#F8F8F8"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="   When you start the Aptitude Guru App, firstly the main screen is displayed.  \n \n   Here the Left Side of the screen is the  action bar, which leads you to Home screen, Favorite Screen, Score Board, Tutorial, About Us, Help file.\n\n   The dashboard consists of six categories for test namely Quantitative, Language, Verbal and Logical, Brain teasers, Computer Fundamentals, All In One Test. On selecting any of these tests, further sub sections will be displayed. Selecting on any of this sub sections you can start with the test. This tests have a feature of random questions meaning, each time you appear for the test, a random set of questions get displayed. The timer gets loaded. The current question number also gets displayed on the top right. You can pause the test incase, which will freeze the timer, and then can resume from the same state. \n\n   The Action bar during the test has options like Home, Favorite - which will help you add questions to favorite list, \ngoto - which will help you jump to any question randomly. The questions that are not yet attempted has a gray shade and the one&apos;s that are attempted are yellow color in the goto option, \nHint and Help to guide you throughout. once you are done, you can finish the test. Once you finish the test, the question numbers are displayed, clicking on any will lead you to the respective question during the test with the selected answer and the correct answer. the final score is also displayed and stored for further reference. \n \n \n   The All In One test allows you to select sections you wish to appear for the test. Once you Start the test, timer gets started. This test has negative marking with -0.25 for each wrong answer and +1 for each correct answer. \n \n   The Brain Teasers has a very interesting set of puzzles with detailed solution. \n \n   Tutorial section consists of all the important study material that will be helpfull before appearing for the test. Provided you must have a pdf reader already installed in your device. \n \n   You can clear score by going to the respective section. You can also remove questions from Favorite."
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+ </ScrollView>
+    
+</RelativeLayout>

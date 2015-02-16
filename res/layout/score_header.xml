@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ActionBarCompat"
+    android:layout_width="55dp"
+    android:background="#6B24B2" >
+
+    <ScrollView
+        android:id="@+id/horizontalScrollView1"
+        android:layout_width="55dp"
+        android:layout_height="fill_parent"
+   android:background="#6B24B2" >
+
+        <LinearLayout
+            android:layout_width="55dp"
+            android:layout_height="fill_parent"
+          android:background="#6B24B2"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/btn_home"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:drawableTop="@drawable/home"
+                android:text="Home"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_fav"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:drawableTop="@drawable/fav"
+                android:text="Fav"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_score"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:drawableTop="@drawable/score"
+                android:text="Score Board"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_delete"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:drawableTop="@drawable/trash"
+                android:text="Clear Score"
+                android:textColor="#ffffff"
+                android:textSize="10dp" />
+
+            <Button
+                android:id="@+id/btn_about"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:drawableTop="@drawable/about"
+                android:text="About Us"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+            
+            <Button
+                android:id="@+id/btn_help"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:drawableTop="@drawable/help"
+                android:text="Help"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

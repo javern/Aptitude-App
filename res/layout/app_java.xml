@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="#F8F8F8"
+    android:orientation="vertical" >
+
+    <!-- Include Action Bar -->
+
+    <include
+        android:id="@+id/include1"
+        android:layout_height="wrap_content"
+        layout="@layout/actionbar_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/include1"
+        android:orientation="vertical" 
+          android:background="#F8F8F8">
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/include1" 
+              android:background="#F8F8F8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="287dp"
+                android:background="#F8F8F8"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/btn_j1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:layout_gravity="right"
+                    android:text="Basics,Classes And Objects" />
+
+                <!-- <Button
+                    android:id="@+id/btn_j2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:layout_gravity="right"
+                    android:text="@string/j2" /> -->
+
+                <Button
+                    android:id="@+id/btn_j3"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:layout_gravity="right"
+                    android:text="@string/j3" />
+
+               <!--   <Button
+                    android:id="@+id/btn_j4"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:layout_gravity="right"
+                    android:text="@string/j4" />-->
+
+                <Button
+                    android:id="@+id/btn_j5"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:layout_gravity="right"
+                    android:text="Exception Handling,Assertions,Enumerators And Nested Classes" />
+
+              <!--   <Button
+                    android:id="@+id/btn_j6"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:layout_gravity="right"
+                    android:text="@string/j6" /> -->
+
+                <Button
+                    android:id="@+id/btn_j7"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:layout_gravity="right"
+                    android:text="Files,Serialization And Threads" />
+
+               <!--   <Button
+                    android:id="@+id/btn_j8"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:layout_gravity="right"
+                    android:text="@string/j8" />-->
+
+                <Button
+                    android:id="@+id/btn_j9"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:layout_gravity="right"
+                    android:text="Formatters,Collections And Generics" />
+
+               <!--  <Button
+                    android:id="@+id/btn_j10"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:layout_gravity="right"
+                    android:text="@string/j10" /> -->
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

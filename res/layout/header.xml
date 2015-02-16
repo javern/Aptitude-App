@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ActionBarCompat"
+    android:layout_width="55dp"
+   android:background="#6B24B2" >
+
+    <ScrollView
+        android:id="@+id/horizontalScrollView1"
+        android:layout_width="55dp"
+        android:layout_height="fill_parent"
+         android:background="#6B24B2">
+
+        <LinearLayout
+            android:layout_width="55dp"
+            android:layout_height="fill_parent"
+        android:background="#6B24B2"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/btn_home"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:drawableTop="@drawable/home"
+                android:text="Home"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_fav"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:drawableTop="@drawable/fav"
+                android:text="Fav"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_goto"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:drawableTop="@drawable/refresh"
+                android:text="GoTo"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_hint"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:drawableTop="@drawable/light_bulb"
+                android:text="hint"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_help"
+                style="@style/DashboardButton"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:drawableTop="@drawable/help"
+                android:text="Help"
+                android:textColor="#ffffff"
+                android:textSize="12dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

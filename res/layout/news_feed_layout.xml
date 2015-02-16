@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+ android:background="#F8F8F8"
+    android:orientation="vertical" >
+
+    <!-- Include Action Bar -->
+
+    <include
+        android:id="@+id/include1"
+        android:layout_height="50dp"
+        layout="@layout/actionbar_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/include1"
+        android:orientation="vertical" 
+          android:background="#F8F8F8">
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/include1"
+            android:layout_toRightOf="@+id/include1" 
+              android:background="#F8F8F8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                  android:background="#F8F8F8" >
+
+                <Button
+                    android:id="@+id/btn_q1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                    android:background="@drawable/shape"
+                    android:text="@string/q1" />
+
+                <Button
+                    android:id="@+id/btn_q2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q2" />
+
+                <Button
+                    android:id="@+id/btn_q4"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q4" />
+
+                <Button
+                    android:id="@+id/btn_q5"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q5" />
+
+                <Button
+                    android:id="@+id/btn_q6"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q6" />
+
+                <Button
+                    android:id="@+id/btn_q7"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q7" />
+
+                <Button
+                    android:id="@+id/btn_q8"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q8" />
+
+                <Button
+                    android:id="@+id/btn_q10"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q10" />
+
+                <Button
+                    android:id="@+id/btn_q11"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q11" />
+
+                <Button
+                    android:id="@+id/btn_q12"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q12" />
+
+                <Button
+                    android:id="@+id/btn_q13"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q13" />
+
+                <Button
+                    android:id="@+id/btn_q15"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q15" />
+
+                <Button
+                    android:id="@+id/btn_q16"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q16" />
+
+                <Button
+                    android:id="@+id/btn_q17"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                     android:background="@drawable/shape"
+                    android:text="@string/q17" />
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

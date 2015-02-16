@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="#F8F8F8"
+    android:orientation="vertical" >
+
+    <!-- Include Action Bar -->
+
+    <include
+        android:id="@+id/include1"
+        android:layout_height="wrap_content"
+        layout="@layout/actionbar_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/include1"
+        android:orientation="vertical" 
+          android:background="#F8F8F8">
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                  android:background="#F8F8F8" >
+
+                <Button
+                    android:id="@+id/btn_cpp1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:text="@string/cpp1" />
+
+                <Button
+                    android:id="@+id/btn_cpp2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:text="@string/cpp2" />
+
+                <Button
+                    android:id="@+id/btn_cpp3"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:text="@string/cpp3" />
+
+                <Button
+                    android:id="@+id/btn_cpp4"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:text="@string/cpp4" />
+
+                <Button
+                    android:id="@+id/btn_cpp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:text="@string/cpp5" />
+
+                <Button
+                    android:id="@+id/btn_cpp6"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:text="@string/cpp6" />
+
+                <Button
+                    android:id="@+id/btn_cpp7"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                      android:background="@drawable/shape"
+                    android:text="@string/cpp7" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,43 @@
+<com.aptitudeguru.dashboard.DashboardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+      android:background="#FFFFFF" >
+    
+    
+    	
+     <Button
+        android:id="@+id/btn_c"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/c3"
+       
+        android:text="@string/c"
+        android:textSize="16dp" />
+    
+	<!--  Friends Button -->
+    <Button
+        android:id="@+id/btn_cpp"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/cpp1"
+        android:text="@string/cpp" />
+    
+	<!--  Messages Button -->
+
+    <Button
+        android:id="@+id/btn_java"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/java1"
+        android:text="@string/java"
+        android:textSize="14dp" />
+	
+    <!--  Places Button -->
+    <Button
+        android:id="@+id/btn_html"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/html1"
+        android:text="@string/html"/>
+
+    
+ 
+</com.aptitudeguru.dashboard.DashboardLayout>

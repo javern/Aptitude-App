@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/androidhive.dashboard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="254dp"
+        android:layout_height="222dp"
+        android:gravity="center"
+          android:background="#F8F8F8"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:text="The Test has been Paused.\n You can resume the Test by clicking on the below button"
+            android:textColor="#000000"
+            android:textSize="17dp" />
+
+        <Button
+            android:id="@+id/btn_resume"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:text="Resume Test" />
+    </LinearLayout>
+
+</LinearLayout>

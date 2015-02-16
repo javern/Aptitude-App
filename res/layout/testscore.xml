@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+     android:background="#F8F8F8"
+    android:orientation="vertical" >
+
+    <!-- Include Action Bar -->
+
+    <include
+        android:id="@+id/include1"
+        android:layout_height="wrap_content"
+        layout="@layout/score_header" />
+
+        <TextView
+            android:id="@+id/dispcat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/include1"
+            android:gravity="center"
+            android:text="Score Board"
+            android:textColor="#000000"
+            android:textSize="17dp" />
+
+      <ScrollView
+          android:id="@+id/scrollView1"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_alignParentRight="true"
+          android:layout_below="@+id/dispcat"
+          android:layout_toRightOf="@+id/include1"
+          android:background="#F8F8F8" >
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/include1"
+        android:background="#F8F8F8" >
+          
+        <TableLayout
+            android:id="@+id/tbl_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:showDividers="beginning|end" >
+
+        </TableLayout>
+        
+    </HorizontalScrollView>
+</ScrollView>
+
+   
+    
+</RelativeLayout>

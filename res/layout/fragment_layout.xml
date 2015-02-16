@@ -1,0 +1,54 @@
+<com.aptitudeguru.dashboard.DashboardLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:background="#F8F8F8" >
+
+    <!-- News Feed Button -->
+
+    <Button
+        android:id="@+id/btn_quants"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/quants"
+        android:text="@string/quants" />
+
+    <!-- Friends Button -->
+
+    <Button
+        android:id="@+id/btn_language"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/language"
+        android:text="@string/language" />
+
+    <!-- Messages Button -->
+
+    <Button
+        android:id="@+id/btn_verbal"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/verbal"
+        android:text="Verbal And \n Logical" />
+
+    <Button
+        android:id="@+id/btn_puzzles"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/puzzles"
+        android:text="Brain Teasers" />
+
+    <Button
+        android:id="@+id/btn_compfun"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/compfun"
+        android:text="Computer\nFundamentals" />
+
+    <!-- Events Button -->
+
+
+    <!-- Photos Button -->
+
+    <Button
+        android:id="@+id/btn_allinone"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/allinone"
+        android:text="@string/allinone" />
+
+</com.aptitudeguru.dashboard.DashboardLayout>
