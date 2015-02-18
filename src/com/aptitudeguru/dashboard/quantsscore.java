@@ -337,6 +337,6 @@ Button btn_help = (Button) findViewById(R.id.btn_help);
 				startActivity(i);
 			}
 		});
-
+		android.util.Log.v("Comment", "quantsscore onCreate method completed");
 	}
 }
