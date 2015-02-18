@@ -21,7 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             
+    		<uses-library android:name="android.test.runner" />
+        <instrumentation android:name="android.test.InstrumentationTestRunner"
+    android:targetPackage="com.aptitudeguru.dashboard"
+    android:label="Unit Tests" />
+            
         </activity>
+        
 
         <!-- News Feed Activity -->
         <activity
