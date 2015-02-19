@@ -1,7 +1,6 @@
 package com.aptitudeguru.dashboard;
 
 public class QuantsTable {
-
 	
 	int _quantsid;
 	String _quantsques;
@@ -12,12 +11,10 @@ public class QuantsTable {
 	String _option4;
 	String _sol;
 
-	
 	public QuantsTable() {
 
 	}
 
-	
 	public QuantsTable(int quantssid, String quantsques, String quantscat,
 			String option1, String option2, String option3, String option4,
 			String sol) {
@@ -30,19 +27,6 @@ public class QuantsTable {
 		this._option4 = option4;
 		this._sol = sol;
 	}
-
-	public QuantsTable(String quantsques, String quantscat, String option1,
-			String option2, String option3, String option4, String sol) {
-
-		this._quantsques = quantsques;
-		this._quantscat = quantscat;
-		this._option1 = option1;
-		this._option2 = option2;
-		this._option3 = option3;
-		this._option4 = option4;
-		this._sol = sol;
-	}
-
 	
 	public int getID() {
 		return this._quantsid;
@@ -114,5 +98,4 @@ public class QuantsTable {
 	public void setOption4(String option4) {
 		this._option4 = option4;
 	}
-
 }

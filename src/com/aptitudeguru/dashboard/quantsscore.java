@@ -1,9 +1,5 @@
 package com.aptitudeguru.dashboard;
 
-
-
-
-
 import android.app.Activity;
 import android.content.Intent;
 
@@ -27,23 +23,20 @@ public class quantsscore extends Activity {
 
 		Button btn_home = (Button) findViewById(R.id.btn_home);
 
-	
 		Button btn_fav = (Button) findViewById(R.id.btn_fav);
-
 		
 		Button btn_score = (Button) findViewById(R.id.btn_score);
-
 		
 		Button btn_tutorial = (Button) findViewById(R.id.btn_soundon);
-Button btn_help = (Button) findViewById(R.id.btn_help);
+		
+		Button btn_help = (Button) findViewById(R.id.btn_help);
 		
 		btn_help.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
 				
-				Intent i = new Intent(getApplicationContext(),
-					Help.class);
+				Intent i = new Intent(getApplicationContext(), Help.class);
 
 				startActivity(i);
 			}
@@ -58,8 +51,7 @@ Button btn_help = (Button) findViewById(R.id.btn_help);
 			@Override
 			public void onClick(View view) {
 				
-				Intent i = new Intent(getApplicationContext(),
-						AndroidDashboardDesignActivity.class);
+				Intent i = new Intent(getApplicationContext(), AndroidDashboardDesignActivity.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(i);
 			}
@@ -94,8 +86,7 @@ Button btn_help = (Button) findViewById(R.id.btn_help);
 			@Override
 			public void onClick(View view) {
 				
-				Intent i = new Intent(getApplicationContext(),
-						Tutorialpage.class);
+				Intent i = new Intent(getApplicationContext(), Tutorialpage.class);
 				startActivity(i);
 			}
 		});
@@ -112,231 +103,63 @@ Button btn_help = (Button) findViewById(R.id.btn_help);
 		});
 
 		Button btn_q1 = (Button) findViewById(R.id.btn_q1);
-
-	
-		btn_q1.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				
-				String cat = "q1";
-				
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-
-				startActivity(i);
-
-			}
-		});
-
+		ScoreButtonCommon(btn_q1, "q1");
 		
 		Button btn_q2 = (Button) findViewById(R.id.btn_q2);
-
-		
-		btn_q2.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-			
-				String cat = "q2";
-
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-
-				startActivity(i);
-			}
-		});
-
+		ScoreButtonCommon(btn_q2, "q2");
 	 
 		Button btn_q4 = (Button) findViewById(R.id.btn_q4);
-
-		 
-		btn_q4.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q4";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-
+		ScoreButtonCommon(btn_q4, "q4");
 	 
 		Button btn_q5 = (Button) findViewById(R.id.btn_q5);
-
-		 
-		btn_q5.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q5";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-
-	 
+		ScoreButtonCommon(btn_q5, "q5");
+		
 		Button btn_q6 = (Button) findViewById(R.id.btn_q6);
-
-		 
-		btn_q6.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q6";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-
+		ScoreButtonCommon(btn_q6, "q6");
 	 
 		Button btn_q7 = (Button) findViewById(R.id.btn_q7);
-
-		 
-		btn_q7.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q7";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-
-	 
+		ScoreButtonCommon(btn_q7, "q7");
+		
 		Button btn_q8 = (Button) findViewById(R.id.btn_q8);
-
-		 
-		btn_q8.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q8";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-
+		ScoreButtonCommon(btn_q8, "q8");
 	 
 		Button btn_q10 = (Button) findViewById(R.id.btn_q10);
-
-		 
-		btn_q10.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q10";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-
+		ScoreButtonCommon(btn_q10, "q10");
 	 
 		Button btn_q11 = (Button) findViewById(R.id.btn_q11);
-
-		 
-		btn_q11.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q11";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-
+		ScoreButtonCommon(btn_q11, "q11");
 	 
 		Button btn_q12 = (Button) findViewById(R.id.btn_q12);
-
-		 
-		btn_q12.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q12";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-
+		ScoreButtonCommon(btn_q12, "q12");
 	 
 		Button btn_q13 = (Button) findViewById(R.id.btn_q13);
-
-		 
-		btn_q13.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q13";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-
+		ScoreButtonCommon(btn_q13, "q13");
 	 
 		Button btn_q15 = (Button) findViewById(R.id.btn_q15);
+		ScoreButtonCommon(btn_q15, "q15");
 
-		 
-		btn_q15.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q15";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-	 
 		Button btn_q16 = (Button) findViewById(R.id.btn_q16);
+		ScoreButtonCommon(btn_q16, "q16");
 
-		 
-		btn_q16.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				 
-				String cat = "q16";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});
-
-	 
 		Button btn_q17 = (Button) findViewById(R.id.btn_q17);
-
-		 
-		btn_q17.setOnClickListener(new View.OnClickListener() {
-
+		ScoreButtonCommon(btn_q17, "q17");
+		
+	}
+	
+	public void ScoreButtonCommon(Button btn, final String t) {
+		btn.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View view) {
-				 
-				String cat = "q17";
-				Intent i = new Intent(getApplicationContext(), TestScore.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
+				QScoreCommon(t);
 			}
 		});
-		android.util.Log.v("Comment", "quantsscore onCreate method completed");
+	}
+	
+	public void QScoreCommon(String temp) {
+		String cat = temp;
+		Intent i = new Intent(getApplicationContext(), TestScore.class);
+		i.putExtra("cat", cat);
+		startActivity(i);		
 	}
 }
