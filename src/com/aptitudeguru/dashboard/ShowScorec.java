@@ -22,7 +22,7 @@ public class ShowScorec extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_score);
         int correct=0,incorrect=0,unattempt=0;
-        
+        //
         
    Button btn_home = (Button) findViewById(R.id.btn_home);
         
