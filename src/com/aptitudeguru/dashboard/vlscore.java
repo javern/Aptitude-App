@@ -19,7 +19,7 @@ public class vlscore extends Activity  {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.news_feed_layout);
+		setContentView(R.layout.messages_layout);
 
 		Button btn_home = (Button) findViewById(R.id.btn_home);
 

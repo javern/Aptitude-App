@@ -101,35 +101,7 @@ public class Tutorialpage extends Activity implements OnTouchListener {
 	            out.write(buffer, 0, read);
 	        }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
  
-    
-    
-    
-    
     
 	   @SuppressLint("NewApi")
 	@Override
@@ -247,6 +219,9 @@ public class Tutorialpage extends Activity implements OnTouchListener {
 	    		});
 	    		btn_c.setOnClickListener(new View.OnClickListener() {
 
+	    			
+	    			
+	    			
 	    			@Override
 	    			public void onClick(View view) {
 	    				

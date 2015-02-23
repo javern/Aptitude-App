@@ -22,7 +22,7 @@ public class Verbal extends Activity {
 			finish();
 			return;
 		}
-		setContentView(R.layout.news_feed_layout);
+		setContentView(R.layout.messages_layout);
 
 		Button btn_home = (Button) findViewById(R.id.btn_home);
 
@@ -138,7 +138,7 @@ public class Verbal extends Activity {
 	public void startActivityCommon(String temp) {
 		String cat = temp;
 
-		Intent i = new Intent(getApplicationContext(), TestPage.class);
+		Intent i = new Intent(getApplicationContext(), TestPagevl.class);
 		i.putExtra("cat", cat);
 		startActivity(i);
 	}
