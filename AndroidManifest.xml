@@ -362,7 +362,13 @@
              android:theme="@android:style/Theme.Dialog"
             android:screenOrientation="portrait" >
         </activity>
-        
+       
+         <uses-library android:name="android.test.runner" />
+         
     </application>
+    
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+    android:targetPackage="androidhive.dashboard"
+    android:label="your tests label" />
 
 </manifest>
