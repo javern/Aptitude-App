@@ -32,22 +32,17 @@ public class quantsscore extends Activity {
 		Button btn_help = (Button) findViewById(R.id.btn_help);
 		
 		btn_help.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View view) {
 				
 				Intent i = new Intent(getApplicationContext(), Help.class);
-
 				startActivity(i);
 			}
 		});
-
 		
 		Button btn_about = (Button) findViewById(R.id.btn_about);
-
-		
+	
 		btn_home.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View view) {
 				
@@ -56,10 +51,8 @@ public class quantsscore extends Activity {
 				startActivity(i);
 			}
 		});
-
-		
+	
 		btn_fav.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View view) {
 			
@@ -71,7 +64,6 @@ public class quantsscore extends Activity {
 
 	
 		btn_score.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View view) {
 			
@@ -82,7 +74,6 @@ public class quantsscore extends Activity {
 
 	
 		btn_tutorial.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View view) {
 				
@@ -93,7 +84,6 @@ public class quantsscore extends Activity {
 
 		
 		btn_about.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View view) {
 				
