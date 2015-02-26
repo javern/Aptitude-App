@@ -1,18 +1,11 @@
 package com.aptitudeguru.dashboard;
-
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
 public class QuantitativeTest {
 
 	String r;
-	
-	@Before
-	public void setUp() throws Exception {
-
-	}
 
 	/* Testing equals*/
 	@Test
@@ -47,18 +40,40 @@ public class QuantitativeTest {
 		original[1] = 1;
 		original[2] = 2;
 		
-	/*	for(int i = 0; i <= original.length; i++){
-			original[i] = i;
-		} */
-		
 		int refA = original[2];
 		int refB = original[2];
 		
 		if(refA == refB){
 			System.out.println("The references are the same");
 		}	
+	}	
+	@Test
+	public void assertNotSame() {
+	int [] original= new int[3];
+		
+		original[0] = 0;
+		original[1] = 1;
+		original[2] = 2;
+		
+		int refA = original[2];
+		int refB = original[1];
+		
+		if(refA != refB){
+			System.out.println("The references are NOT the same");
+		}
 	}
-	
+	@Test
+	public void assertSameSecond(){
+		int [] original= new int[3];
+		
+		original[0] = 0;
+		original[1] = 1;
+		original[2] = 2;
+		
+		int refA = original[2];
+		int refB = original[2];
+		checkSame(refA, refB);
+	}
 	
 	
 	/* Testing nulls */
@@ -79,9 +94,18 @@ public class QuantitativeTest {
 	}
 
 	
-
 	
-	private void EqualString(String compareThis, String shouldBeThis) {
+	
+	
+	private void checkSame(int a, int b) {
+		if(a == b){
+			System.out.println("The references are the same");
+		} else {
+			System.out.println("The references are NOT the same");
+		}
+	}
+	
+ 	private void EqualString(String compareThis, String shouldBeThis) {
 		if(compareThis == shouldBeThis) {
 			System.out.println("Strings are the same");
 		}
@@ -139,6 +163,4 @@ public class QuantitativeTest {
 			System.out.println("Arrays are not the same");
 		}
 	}
-	
-	
 }
