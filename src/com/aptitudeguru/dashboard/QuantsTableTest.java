@@ -5,12 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+
 public class QuantsTableTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
+	
 	@Test
 	public void test() {
 		QuantsTable q = new QuantsTable(01, "quantsques", "quantscat",	"option1", "option2", "option3", "option4", "sol");
@@ -19,4 +16,6 @@ public class QuantsTableTest {
 		
 	}
 
+	
 }
+

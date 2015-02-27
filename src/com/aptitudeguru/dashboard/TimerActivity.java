@@ -43,7 +43,8 @@ public class TimerActivity  extends Activity implements OnClickListener{
 	 }
 	 
 	 public class MyCountDownTimer extends CountDownTimer {
-	  public MyCountDownTimer(long startTime, long interval) {
+	
+		 public MyCountDownTimer(long startTime, long interval) {
 	   super(startTime, interval);
 	  }
 
@@ -59,12 +60,5 @@ public class TimerActivity  extends Activity implements OnClickListener{
 	   text.setText("" + millisUntilFinished / 1000);
 	
 	  }
-
 	 }
-
-	
-	 
-	
-	
-
 }
