@@ -9,19 +9,31 @@ import org.junit.Test;
 
 public class TimerActivityTest {
 
+	boolean timerStop;
+	
 	@Before
 	public void setUp() throws Exception {
 	}
 
-	@Test
+	@Before
 	public void test() {
 		Thread t = new Thread();
 		
 		try {
+			timerStop = false;
+			
 			t.sleep(3000);
-			System.out.println("Timer Test");
+			
+			timerStop = true;
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void checkTimer() {
+		assertFalse(timerStop);
+		
 	}
 }
