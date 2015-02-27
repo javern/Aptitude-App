@@ -43,19 +43,4 @@ public class TutorialpageTest extends TestCase {
 	    }
 	}
 
-	@Test
-	public void testGetDistance() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testOnTouch() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPdfcommon() {
-		fail("Not yet implemented");
-	}
-
 }
