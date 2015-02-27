@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 
 public class Tester {
 
-  //examples of junit testing and asserts. Run as junit tests 
+  //examples/practice of junit testing and asserts. Run as junit tests 
 	
 	@Test     
 	public final void testStringTest() {
@@ -26,10 +26,21 @@ public class Tester {
 		
 		Testing greaterthan = new Testing();
 		
-		assertFalse(greaterthan.testGreaterThan(4));
+		assertFalse(greaterthan.testGreaterThan(4));  //will fail if greater than 5
 			
+		}
+	
+@Test
+	
+	public final void lessThan(){
 		
-}
+		
+		Testing greaterthan = new Testing();
+		
+		assertTrue(greaterthan.testGreaterThan(7));  //will fail if less than 5
+			
+		}
+	
 	
 }
 
