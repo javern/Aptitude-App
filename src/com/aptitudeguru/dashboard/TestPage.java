@@ -3,6 +3,8 @@ package com.aptitudeguru.dashboard;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,7 +14,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +21,6 @@ import android.widget.Button;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
 import android.widget.TextView;
 import android.widget.Toast;
 import androidhive.dashboard.R;
@@ -581,6 +581,7 @@ public class TestPage extends Activity implements OnClickListener
 					QuantsTable q = db.getQuants(val, cat);
 					// i=i+1;
 					String j = q.getQues();
+					
 					t1.setText(j);
 
 					String opt1 = q.getOption1();
@@ -748,6 +749,16 @@ public class TestPage extends Activity implements OnClickListener
 			text.setText((minutes) + ":" + (seconds) + "");
 			// text.setText("" + millisUntilFinished / 1000);
 
+		}
+		
+		public String currencyConvert(String cConvert)
+		{
+			String[] cSplit=cConvert.split("\\s+");
+			//for loop and if Rs. is detected then
+			/*Pattern pattern = Pattern.compile("Rs.(.*)");
+
+			Matcher matcher = pattern.matcher(cSplit);*/
+			return cConvert;
 		}
 
 	}
