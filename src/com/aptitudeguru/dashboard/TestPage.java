@@ -220,9 +220,17 @@ public class TestPage extends Activity implements OnClickListener
 		t1.setText(j);
 		t2.setText("   " + (j1 + 1) + "/20");
 		String opt1 = q.getOption1();
+		String tempOpt1=currencyConvert(opt1);
+		opt1=tempOpt1;
 		String opt2 = q.getOption2();
+		String tempOpt2=currencyConvert(opt2);
+		opt2=tempOpt2;
 		String opt3 = q.getOption3();
+		String tempOpt3=currencyConvert(opt3);
+		opt3=tempOpt3;
 		String opt4 = q.getOption4();
+		String tempOpt4=currencyConvert(opt4);
+		opt4=tempOpt4;
 
 		b1.setText(opt1);
 		b2.setText(opt2);
@@ -434,7 +442,8 @@ public class TestPage extends Activity implements OnClickListener
 						DecimalFormat df = new DecimalFormat(
 								"00.00");
 						String j = df.format(tt);
-
+						String tempJ=currencyConvert(j);
+						j=tempJ;
 						i.putExtra("score", ans);
 						i.putExtra("givenans", givenans);
 						i.putExtra("allid", a);
@@ -565,10 +574,20 @@ public class TestPage extends Activity implements OnClickListener
 		givenans[0] = initans[count];
 		t2.setText("   " + "1/20");
 		String j = q.getQues();
+		String tempJ=currencyConvert(j);
+		j=tempJ;
 		String opt1 = q.getOption1();
+		String tempOpt1=currencyConvert(opt1);
+		opt1=tempOpt1;
 		String opt2 = q.getOption2();
+		String tempOpt2=currencyConvert(opt2);
+		opt2=tempOpt2;
 		String opt3 = q.getOption3();
+		String tempOpt3=currencyConvert(opt3);
+		opt3=tempOpt3;
 		String opt4 = q.getOption4();
+		String tempOpt4=currencyConvert(opt4);
+		opt4=tempOpt4;
 		t1.setText(j);
 		b1.setText(opt1);
 		b2.setText(opt2);
@@ -629,11 +648,18 @@ public class TestPage extends Activity implements OnClickListener
 					String tempJ=currencyConvert(j);
 					j=tempJ;
 					t1.setText(j);
-
 					String opt1 = q.getOption1();
+					String tempOpt1=currencyConvert(opt1);
+					opt1=tempOpt1;
 					String opt2 = q.getOption2();
+					String tempOpt2=currencyConvert(opt2);
+					opt2=tempOpt2;
 					String opt3 = q.getOption3();
+					String tempOpt3=currencyConvert(opt3);
+					opt3=tempOpt3;
 					String opt4 = q.getOption4();
+					String tempOpt4=currencyConvert(opt4);
+					opt4=tempOpt4;
 					// t1.setText();
 					b1.setText(opt1);
 					b2.setText(opt2);
@@ -685,12 +711,22 @@ public class TestPage extends Activity implements OnClickListener
 					QuantsTable q = db.getQuants(val, cat);
 					// i=i+1;
 					String j = q.getQues();
+					String tempJ=currencyConvert(j);
+					j=tempJ;
 					t1.setText(j);
 					t2.setText("   " + (click + 1) + "/20");
 					String opt1 = q.getOption1();
+					String tempOpt1=currencyConvert(opt1);
+					opt1=tempOpt1;
 					String opt2 = q.getOption2();
+					String tempOpt2=currencyConvert(opt2);
+					opt2=tempOpt2;
 					String opt3 = q.getOption3();
+					String tempOpt3=currencyConvert(opt3);
+					opt3=tempOpt3;
 					String opt4 = q.getOption4();
+					String tempOpt4=currencyConvert(opt4);
+					opt4=tempOpt4;
 					t1.setText(j);
 					b1.setText(opt1);
 					b2.setText(opt2);
@@ -765,6 +801,8 @@ public class TestPage extends Activity implements OnClickListener
 
 					DecimalFormat df = new DecimalFormat("00.00");
 					String j = df.format(tt);
+					String tempJ=currencyConvert(j);
+					j=tempJ;
 					i.putExtra("tt", j);
 
 					i.putExtra("score", ans);
