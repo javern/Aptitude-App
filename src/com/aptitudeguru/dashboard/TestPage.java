@@ -112,6 +112,14 @@ public class TestPage extends Activity implements OnClickListener
 			// Activity being restarted from stopped state
 		}
 	}
+	
+	public String fmt(double decimal)
+	{
+	    if(decimal == (long) decimal)
+	        return String.format("%d",(long)decimal);
+	    else
+	        return String.format("%.2f",decimal);
+	}
 
 	public String currencyConvert(String cConvert)
 	{
@@ -127,8 +135,10 @@ public class TestPage extends Activity implements OnClickListener
 					try {
 						double curConvert = Double.parseDouble(cSplit[i+1]);
 						curConvert=currencyMultiplier(curConvert);
-						int tempIntCurrency = (int) Math.round(curConvert);
-						cSplit[i+1]=Integer.toString(tempIntCurrency);
+						//int tempIntCurrency = (int) Math.round(curConvert);
+						
+						cSplit[i+1] = fmt(curConvert);
+						//cSplit[i+1]=Integer.toString(tempIntCurrency);
 					} catch (NumberFormatException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
