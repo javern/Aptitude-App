@@ -113,7 +113,7 @@ public class TestPage extends Activity implements OnClickListener
 		}
 	}
 	
-	public String fmt(double decimal)
+	public String accDecimal(double decimal)
 	{
 	    if(decimal == (long) decimal)
 	        return String.format("%d",(long)decimal);
@@ -137,7 +137,7 @@ public class TestPage extends Activity implements OnClickListener
 						curConvert=currencyMultiplier(curConvert);
 						//int tempIntCurrency = (int) Math.round(curConvert);
 						
-						cSplit[i+1] = fmt(curConvert);
+						cSplit[i+1] = accDecimal(curConvert);
 						//cSplit[i+1]=Integer.toString(tempIntCurrency);
 					} catch (NumberFormatException e) {
 						// TODO Auto-generated catch block
@@ -227,6 +227,8 @@ public class TestPage extends Activity implements OnClickListener
 		QuantsTable q = db.getQuants(j2, cat);
 		// i=i+1;
 		String j = q.getQues();
+		String tempJ=currencyConvert(j);
+		j=tempJ;
 		t1.setText(j);
 		t2.setText("   " + (j1 + 1) + "/20");
 		String opt1 = q.getOption1();
