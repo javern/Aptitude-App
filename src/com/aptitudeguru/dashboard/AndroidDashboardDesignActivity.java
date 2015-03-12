@@ -106,20 +106,12 @@ public class AndroidDashboardDesignActivity extends Activity {
 		}
 
 		
-		Button btn_home = (Button) findViewById(R.id.btn_home);
-
-		
+		Button btn_home = (Button) findViewById(R.id.btn_home);		
 		Button btn_fav = (Button) findViewById(R.id.btn_fav);
-
-		
-		Button btn_score = (Button) findViewById(R.id.btn_score);
-
-		
+		Button btn_score = (Button) findViewById(R.id.btn_score);		
 		Button btn_soundon = (Button) findViewById(R.id.btn_soundon);
-
-	
 		Button btn_about = (Button) findViewById(R.id.btn_about);
-		 Button btn_help = (Button) findViewById(R.id.btn_help);
+		Button btn_help = (Button) findViewById(R.id.btn_help);
   		
   		btn_help.setOnClickListener(new View.OnClickListener() {
 
@@ -186,25 +178,14 @@ public class AndroidDashboardDesignActivity extends Activity {
 				startActivity(i);
 			}
 		});
-
 		
 		Button btn_quants = (Button) findViewById(R.id.btn_quants);
-
-		
 		Button btn_language = (Button) findViewById(R.id.btn_language);
-
-		
 		Button btn_verbal = (Button) findViewById(R.id.btn_verbal);
-
-		
 		Button btn_compfun = (Button) findViewById(R.id.btn_compfun);
-
-	
 		Button btn_puzzles = (Button) findViewById(R.id.btn_puzzles);
-
-		
 		Button btn_allinone = (Button) findViewById(R.id.btn_allinone);
-
+		Button btn_psycho = (Button) findViewById(R.id.btn_psycho);
 		
 		btn_quants.setOnClickListener(new View.OnClickListener() {
 
@@ -269,6 +250,15 @@ public class AndroidDashboardDesignActivity extends Activity {
 			public void onClick(View view) {
 				
 				Intent i = new Intent(getApplicationContext(), AllInOne.class);
+				startActivity(i);
+			}
+		});
+		
+		btn_psycho.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(), Psychometric.class);
 				startActivity(i);
 			}
 		});

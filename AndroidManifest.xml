@@ -23,29 +23,23 @@
             
         </activity>
 
-        <!-- News Feed Activity -->
         <activity
             android:name="com.aptitudeguru.dashboard.Quantitative"
             android:label="Quantitative"
             android:screenOrientation="portrait" >
         </activity>
-
-        <!-- Friends Activity -->
-
         <activity
             android:name="com.aptitudeguru.dashboard.Language"
             android:label="Language"
             android:screenOrientation="portrait" >
         </activity>
 
-        <!-- Messages Activity -->
         <activity
             android:name="com.aptitudeguru.dashboard.Verbal"
             android:label="Verbal And Logical"
             android:screenOrientation="portrait" >
         </activity>
 
-        <!-- Places Activity -->
         <activity
             android:name="com.aptitudeguru.dashboard.ComputerFundamentals"
             android:label="Computer Fundamentals" 
@@ -59,12 +53,18 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <!-- Photos Activity -->
         <activity
             android:name="com.aptitudeguru.dashboard.AllInOne"
             android:label="All in One Test" 
             android:screenOrientation="portrait">
         </activity>
+        
+        <activity
+            android:name="com.aptitudeguru.dashboard.Psychometric"
+            android:label="Psychometric Test"
+            android:screenOrientation="portrait">
+        </activity>
+        
         <activity android:name="com.aptitudeguru.dashboard.TimerActivity"
             android:screenOrientation="portrait" >
         </activity>
