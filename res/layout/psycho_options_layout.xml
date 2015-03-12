@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    	xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/psychomenuScrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:background="#F8F8F8" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*" >
+
+            <TableRow android:minHeight="150dp" >
+
+                <Button
+                    android:id="@+id/btn_psychotest"
+                    style="@style/DashboardButton"
+                    android:layout_width="0dp"
+                    android:text="@string/psychotest" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>

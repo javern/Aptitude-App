@@ -23,7 +23,7 @@ public class Psychometric extends Activity {
 			finish();
 			return;
 		}
-		setContentView(R.layout.friends_layout);
+		setContentView(R.layout.psychomenu_layout);
 		
 		Button btn_home = (Button) findViewById(R.id.btn_home);
 		Button btn_fav = (Button) findViewById(R.id.btn_fav);
@@ -32,15 +32,70 @@ public class Psychometric extends Activity {
 		Button btn_about = (Button) findViewById(R.id.btn_about);
 		Button btn_help = (Button) findViewById(R.id.btn_help);
 		
-		/*btn_home.setOnClickListener(new View.OnClickListener() {
-			
+		btn_home.setOnClickListener(new View.OnClickListener() {
+
 			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(), AndroidDashboardDesignActivity.class);
-				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			public void onClick(View view) {
+				finish();
+			}
+		});
+
+		
+		btn_fav.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				
+				Intent i = new Intent(getApplicationContext(), FavPage.class);
 				startActivity(i);
 			}
-		});*/
+		});
+
+		
+		btn_score.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				
+				Intent i = new Intent(getApplicationContext(), scoremenu.class);
+				startActivity(i);
+			}
+		});
+
+		
+		btn_tutorial.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				
+				Intent i = new Intent(getApplicationContext(),
+						Tutorialpage.class);
+				startActivity(i);
+			}
+		});
+
+		
+		btn_about.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				
+				Intent i = new Intent(getApplicationContext(), AboutUs.class);
+				startActivity(i);
+			}
+		});
+		
+		btn_help.setOnClickListener(new View.OnClickListener() {
+
+  			@Override
+  			public void onClick(View view) {
+  			
+  				Intent i = new Intent(getApplicationContext(),
+  					Help.class);
+
+  				startActivity(i);
+  			}
+  		});
 	}
 
 }

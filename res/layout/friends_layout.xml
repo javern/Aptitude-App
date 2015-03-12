@@ -1,15 +1,15 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/home_root"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-     android:background="#F8F8F8"
+    android:background="#F8F8F8"
     android:orientation="vertical" >
 
     <!-- Include Action Bar -->
 
     <include
         android:id="@+id/include1"
-        android:layout_height="wrap_content"
         layout="@layout/actionbar_layout" />
 
     <LinearLayout
