@@ -138,6 +138,8 @@ public class TestPage extends Activity implements OnClickListener
 						cSplit[i]="£";
 					else if (getCountry.equals("US"))
 						cSplit[i]="$";
+					else if (getCountry.equals("FR"))
+						cSplit[i]="€";
 					try {
 						double curConvert = Double.parseDouble(cSplit[i+1]);
 						curConvert=currencyMultiplier(curConvert);
@@ -156,7 +158,7 @@ public class TestPage extends Activity implements OnClickListener
 			StringBuffer result = new StringBuffer();
 			for (int i = 0; i < cSplit.length; i++) {
 				result.append(cSplit[i]);
-				if ((!(cSplit[i].equals("£"))&&(!(cSplit[i].equals("$")))))
+				if ((!(cSplit[i].equals("£"))&&(!(cSplit[i].equals("$")))&&(!(cSplit[i].equals("€")))))
 				{
 					if ((cSplit.length-i>0))
 						result.append(" ");
@@ -180,6 +182,11 @@ public class TestPage extends Activity implements OnClickListener
 		{
 			final double rsToUS=0.016;
 			convertedValue=toConvert*rsToUS;
+		}
+		else if (getCountry.equals("FR"))
+		{
+			final double rsToEU=0.015;
+			convertedValue=toConvert*rsToEU;
 		}
 		return convertedValue;
 	}
