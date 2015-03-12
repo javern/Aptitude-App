@@ -1,5 +1,7 @@
 package com.aptitudeguru.dashboard;
 
+import java.util.Locale;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -25,43 +27,103 @@ public class Result extends Activity {
 	final Context context = this;
 	DatabaseHandler db = new DatabaseHandler(this);
 
+	public String accDecimal(double decimal)
+	{
+		if(decimal == (long) decimal)
+			return String.format("%d",(long)decimal);
+		else
+			return String.format("%.2f",decimal);
+	}
+
+	public String currencyConvert(String cConvert)
+	{
+		if (cConvert.contains("Rs."))
+		{
+			String[] cSplit=cConvert.split("\\s+");
+			//for loop and if Rs. is detected then
+			for (int i=0;i<cSplit.length;i++)
+			{
+				if (cSplit[i].contains("Rs."))
+				{
+					cSplit[i]="£";
+					try {
+						double curConvert = Double.parseDouble(cSplit[i+1]);
+						curConvert=currencyMultiplier(curConvert);
+						//int tempIntCurrency = (int) Math.round(curConvert);
+
+						cSplit[i+1] = accDecimal(curConvert);
+						//cSplit[i+1]=Integer.toString(tempIntCurrency);
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+
+			StringBuffer result = new StringBuffer();
+			for (int i = 0; i < cSplit.length; i++) {
+				result.append(cSplit[i]);
+				if (!(cSplit[i].equals("£")))
+				{
+					if ((cSplit.length-i>0))
+						result.append(" ");
+				}
+			}
+			String tempString = result.toString();
+			cConvert=tempString;
+		}
+		return cConvert;
+	}
+
+	public double currencyMultiplier(double toConvert)
+	{
+		String getCountry=Locale.getDefault().getCountry();
+		double convertedValue=0;
+		if (getCountry=="UK")
+		{
+			final double rsToGBP=0.011;
+			convertedValue=toConvert*rsToGBP;
+		}
+		return convertedValue;
+	}
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.result);
 
 		Button btn_home = (Button) findViewById(R.id.btn_home);
 
-	
+
 		Button btn_fav = (Button) findViewById(R.id.btn_fav);
 
-		
+
 		Button btn_score = (Button) findViewById(R.id.btn_score);
 
-		
+
 		Button btn_tutorial = (Button) findViewById(R.id.btn_soundon);
 
-		
+
 		Button btn_about = (Button) findViewById(R.id.btn_about);
-	Button btn_help = (Button) findViewById(R.id.btn_help);
-		
+		Button btn_help = (Button) findViewById(R.id.btn_help);
+
 		btn_help.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
-				
+
 				Intent i = new Intent(getApplicationContext(),
-					Help.class);
+						Help.class);
 
 				startActivity(i);
 			}
 		});
 
-		
+
 		btn_home.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
-				
+
 				Intent i = new Intent(getApplicationContext(),
 						AndroidDashboardDesignActivity.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -69,51 +131,53 @@ public class Result extends Activity {
 			}
 		});
 
-		
+
 		btn_fav.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
-			
+
 				Intent i = new Intent(getApplicationContext(), FavPage.class);
 
 				startActivity(i);
 			}
 		});
 
-		
+
 		btn_score.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
-				
+
 				Intent i = new Intent(getApplicationContext(), scoremenu.class);
 				startActivity(i);
 			}
 		});
 
-		
+
 		btn_tutorial.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
-				
+
 				Intent i = new Intent(getApplicationContext(),
 						Tutorialpage.class);
 				startActivity(i);
 			}
 		});
 
-		
+
 		btn_about.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
-			
+
 				Intent i = new Intent(getApplicationContext(), AboutUs.class);
 				startActivity(i);
 			}
 		});
+
+
 		Bundle bundle = getIntent().getExtras();
 		String id1 = bundle.getString("ComingFrom");
 		id = Integer.parseInt(id1);
@@ -131,10 +195,20 @@ public class Result extends Activity {
 		btn_prev.setEnabled(true);
 		final Button btn_finish = (Button) findViewById(R.id.btn_finish);
 		String j = q.getQues();
+		String tempJ=currencyConvert(j);
+		j=tempJ;
 		String opt1 = q.getOption1();
+		String tempOpt1=currencyConvert(opt1);
+		opt1=tempOpt1;
 		String opt2 = q.getOption2();
+		String tempOpt2=currencyConvert(opt2);
+		opt2=tempOpt2;
 		String opt3 = q.getOption3();
+		String tempOpt3=currencyConvert(opt3);
+		opt3=tempOpt3;
 		String opt4 = q.getOption4();
+		String tempOpt4=currencyConvert(opt4);
+		opt4=tempOpt4;
 		String sol = q.getSol();
 
 		t1 = (TextView) findViewById(R.id.quest1);
@@ -181,10 +255,20 @@ public class Result extends Activity {
 					id = allid[current];
 					QuantsTable q = db.getQuants(id, cat);
 					String j = q.getQues();
+					String tempJ=currencyConvert(j);
+					j=tempJ;
 					String opt1 = q.getOption1();
+					String tempOpt1=currencyConvert(opt1);
+					opt1=tempOpt1;
 					String opt2 = q.getOption2();
+					String tempOpt2=currencyConvert(opt2);
+					opt2=tempOpt2;
 					String opt3 = q.getOption3();
+					String tempOpt3=currencyConvert(opt3);
+					opt3=tempOpt3;
 					String opt4 = q.getOption4();
+					String tempOpt4=currencyConvert(opt4);
+					opt4=tempOpt4;
 
 					t1 = (TextView) findViewById(R.id.quest1);
 					t2 = (TextView) findViewById(R.id.op1);
@@ -234,10 +318,20 @@ public class Result extends Activity {
 					id = allid[current];
 					QuantsTable q = db.getQuants(id, cat);
 					String j = q.getQues();
+					String tempJ=currencyConvert(j);
+					j=tempJ;
 					String opt1 = q.getOption1();
+					String tempOpt1=currencyConvert(opt1);
+					opt1=tempOpt1;
 					String opt2 = q.getOption2();
+					String tempOpt2=currencyConvert(opt2);
+					opt2=tempOpt2;
 					String opt3 = q.getOption3();
+					String tempOpt3=currencyConvert(opt3);
+					opt3=tempOpt3;
 					String opt4 = q.getOption4();
+					String tempOpt4=currencyConvert(opt4);
+					opt4=tempOpt4;
 					String sol = q.getSol();
 					t1 = (TextView) findViewById(R.id.quest1);
 					t2 = (TextView) findViewById(R.id.op1);
@@ -293,29 +387,29 @@ public class Result extends Activity {
 
 				// set dialog message
 				alertDialogBuilder
-						.setMessage("Click yes to exit!")
-						.setCancelable(false)
-						.setPositiveButton("Yes",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
+				.setMessage("Click yes to exit!")
+				.setCancelable(false)
+				.setPositiveButton("Yes",
+						new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,
+							int id) {
 
-										Result.this.finish();
-									}
-								})
-						.setNegativeButton("No",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-									
-										dialog.cancel();
-									}
-								});
+						Result.this.finish();
+					}
+				})
+				.setNegativeButton("No",
+						new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,
+							int id) {
 
-				
+						dialog.cancel();
+					}
+				});
+
+
 				AlertDialog alertDialog = alertDialogBuilder.create();
 
-				
+
 				alertDialog.show();
 			}
 		});
