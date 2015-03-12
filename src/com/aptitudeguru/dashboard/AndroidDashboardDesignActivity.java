@@ -88,7 +88,7 @@ public class AndroidDashboardDesignActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dashboard_layout);
-		Toast.makeText(getApplicationContext(), Locale.getDefault().getDisplayCountry(), Toast.LENGTH_LONG).show();
+		//Toast.makeText(getApplicationContext(), Locale.getDefault().getCountry(), Toast.LENGTH_LONG).show();
 		DatabaseHandler db = new DatabaseHandler(this);
 
 		try {

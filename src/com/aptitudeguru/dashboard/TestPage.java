@@ -2,6 +2,7 @@ package com.aptitudeguru.dashboard;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,6 +55,8 @@ public class TestPage extends Activity implements OnClickListener
 
 	Button btn_next;
 	Button btn_prev;
+
+	String getCountry=Locale.getDefault().getCountry();
 
 	DatabaseHandler db = new DatabaseHandler(this);
 
@@ -131,13 +134,17 @@ public class TestPage extends Activity implements OnClickListener
 			{
 				if (cSplit[i].contains("Rs."))
 				{
-					cSplit[i]="£";
+					if (getCountry.equals("GB"))
+						cSplit[i]="£";
+					else if (getCountry.equals("US"))
+						cSplit[i]="$";
 					try {
 						double curConvert = Double.parseDouble(cSplit[i+1]);
 						curConvert=currencyMultiplier(curConvert);
 						//int tempIntCurrency = (int) Math.round(curConvert);
 						
 						cSplit[i+1] = accDecimal(curConvert);
+						
 						//cSplit[i+1]=Integer.toString(tempIntCurrency);
 					} catch (NumberFormatException e) {
 						// TODO Auto-generated catch block
@@ -149,7 +156,7 @@ public class TestPage extends Activity implements OnClickListener
 			StringBuffer result = new StringBuffer();
 			for (int i = 0; i < cSplit.length; i++) {
 				result.append(cSplit[i]);
-				if (!(cSplit[i].equals("£")))
+				if ((!(cSplit[i].equals("£"))&&(!(cSplit[i].equals("$")))))
 				{
 					if ((cSplit.length-i>0))
 						result.append(" ");
@@ -163,8 +170,17 @@ public class TestPage extends Activity implements OnClickListener
 
 	public double currencyMultiplier(double toConvert)
 	{
-		final double rsToGBP=0.011;
-		double convertedValue=toConvert*rsToGBP;
+		double convertedValue=0;
+		if (getCountry.equals("GB"))
+		{
+			final double rsToGBP=0.011;
+			convertedValue=toConvert*rsToGBP;
+		}
+		else if (getCountry.equals("US"))
+		{
+			final double rsToUS=0.016;
+			convertedValue=toConvert*rsToUS;
+		}
 		return convertedValue;
 	}
 

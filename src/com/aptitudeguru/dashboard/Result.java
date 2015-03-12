@@ -1,5 +1,7 @@
 package com.aptitudeguru.dashboard;
 
+import java.util.Locale;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -75,8 +77,13 @@ public class Result extends Activity {
 
 	public double currencyMultiplier(double toConvert)
 	{
-		final double rsToGBP=0.011;
-		double convertedValue=toConvert*rsToGBP;
+		String getCountry=Locale.getDefault().getCountry();
+		double convertedValue=0;
+		if (getCountry=="UK")
+		{
+			final double rsToGBP=0.011;
+			convertedValue=toConvert*rsToGBP;
+		}
 		return convertedValue;
 	}
 
