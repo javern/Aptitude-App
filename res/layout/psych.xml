@@ -28,10 +28,10 @@
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Ranked Response \n \n
 In these questions you will be asked to imagine yourself in a number of different scenarios and roles. You will be presented with situation and asked to rank each of the responses to these situations from 1 to 4 with regard to your opinion of their effectiveness.
-\n p
+\n 
 
 Scenario 1 \n 
 You are a Human Resources (HR) Assistant working in the HR Department of a busy NHS Hospital Trust. The hospital is the Princess Aurora General in Saldringham City.
