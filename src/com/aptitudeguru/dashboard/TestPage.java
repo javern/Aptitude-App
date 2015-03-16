@@ -2,10 +2,7 @@ package com.aptitudeguru.dashboard;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,6 +20,7 @@ import android.widget.Button;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
 import android.widget.TextView;
 import android.widget.Toast;
 import androidhive.dashboard.R;
@@ -55,8 +54,6 @@ public class TestPage extends Activity implements OnClickListener
 
 	Button btn_next;
 	Button btn_prev;
-
-	String getCountry=Locale.getDefault().getCountry();
 
 	DatabaseHandler db = new DatabaseHandler(this);
 
@@ -114,81 +111,6 @@ public class TestPage extends Activity implements OnClickListener
 
 			// Activity being restarted from stopped state
 		}
-	}
-	
-	public String accDecimal(double decimal)
-	{
-	    if(decimal == (long) decimal)
-	        return String.format("%d",(long)decimal);
-	    else
-	        return String.format("%.2f",decimal);
-	}
-
-	public String currencyConvert(String cConvert)
-	{
-		if (cConvert.contains("Rs."))
-		{
-			String[] cSplit=cConvert.split("\\s+");
-			//for loop and if Rs. is detected then
-			for (int i=0;i<cSplit.length;i++)
-			{
-				if (cSplit[i].contains("Rs."))
-				{
-					if (getCountry.equals("GB"))
-						cSplit[i]="£";
-					else if (getCountry.equals("US"))
-						cSplit[i]="$";
-					else if (getCountry.equals("FR"))
-						cSplit[i]="€";
-					try {
-						double curConvert = Double.parseDouble(cSplit[i+1]);
-						curConvert=currencyMultiplier(curConvert);
-						//int tempIntCurrency = (int) Math.round(curConvert);
-						
-						cSplit[i+1] = accDecimal(curConvert);
-						
-						//cSplit[i+1]=Integer.toString(tempIntCurrency);
-					} catch (NumberFormatException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-
-			StringBuffer result = new StringBuffer();
-			for (int i = 0; i < cSplit.length; i++) {
-				result.append(cSplit[i]);
-				if ((!(cSplit[i].equals("£"))&&(!(cSplit[i].equals("$")))&&(!(cSplit[i].equals("€")))))
-				{
-					if ((cSplit.length-i>0))
-						result.append(" ");
-				}
-			}
-			String tempString = result.toString();
-			cConvert=tempString;
-		}
-		return cConvert;
-	}
-
-	public double currencyMultiplier(double toConvert)
-	{
-		double convertedValue=0;
-		if (getCountry.equals("GB"))
-		{
-			final double rsToGBP=0.011;
-			convertedValue=toConvert*rsToGBP;
-		}
-		else if (getCountry.equals("US"))
-		{
-			final double rsToUS=0.016;
-			convertedValue=toConvert*rsToUS;
-		}
-		else if (getCountry.equals("FR"))
-		{
-			final double rsToEU=0.015;
-			convertedValue=toConvert*rsToEU;
-		}
-		return convertedValue;
 	}
 
 	@Override
@@ -250,22 +172,12 @@ public class TestPage extends Activity implements OnClickListener
 		QuantsTable q = db.getQuants(j2, cat);
 		// i=i+1;
 		String j = q.getQues();
-		String tempJ=currencyConvert(j);
-		j=tempJ;
 		t1.setText(j);
 		t2.setText("   " + (j1 + 1) + "/20");
 		String opt1 = q.getOption1();
-		String tempOpt1=currencyConvert(opt1);
-		opt1=tempOpt1;
 		String opt2 = q.getOption2();
-		String tempOpt2=currencyConvert(opt2);
-		opt2=tempOpt2;
 		String opt3 = q.getOption3();
-		String tempOpt3=currencyConvert(opt3);
-		opt3=tempOpt3;
 		String opt4 = q.getOption4();
-		String tempOpt4=currencyConvert(opt4);
-		opt4=tempOpt4;
 
 		b1.setText(opt1);
 		b2.setText(opt2);
@@ -307,37 +219,37 @@ public class TestPage extends Activity implements OnClickListener
 
 		// set dialog message
 		alertDialogBuilder
-		.setMessage("Start Test?")
-		.setCancelable(false)
-		.setPositiveButton("Yes",
-				new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				// if this button is clicked, close
-				// current activity
+				.setMessage("Start Test?")
+				.setCancelable(false)
+				.setPositiveButton("Yes",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								// if this button is clicked, close
+								// current activity
 
-				if (!timerHasStarted) {
-					countDownTimer.start();
-					k1 = 1;
-					timerHasStarted = true;
-					// startB.setText("STOP");
-				} else {
-					countDownTimer.cancel();
-					timerHasStarted = false;
-					// startB.setText("RESTART");
-				}
+								if (!timerHasStarted) {
+									countDownTimer.start();
+									k1 = 1;
+									timerHasStarted = true;
+									// startB.setText("STOP");
+								} else {
+									countDownTimer.cancel();
+									timerHasStarted = false;
+									// startB.setText("RESTART");
+								}
 
-				// next
-				dialog.cancel();
-			}
-		})
-		.setNegativeButton("No", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				// if this button is clicked, just close
-				// the dialog box and do nothing
+								// next
+								dialog.cancel();
+							}
+						})
+				.setNegativeButton("No", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						// if this button is clicked, just close
+						// the dialog box and do nothing
 
-				TestPage.this.finish();
-			}
-		});
+						TestPage.this.finish();
+					}
+				});
 
 		// create alert dialog
 		AlertDialog alertDialog = alertDialogBuilder.create();
@@ -453,52 +365,51 @@ public class TestPage extends Activity implements OnClickListener
 
 				// set dialog message
 				alertDialogBuilder
-				.setMessage("Click yes to exit!")
-				.setCancelable(false)
-				.setPositiveButton("Yes",
-						new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog,
-							int id) {
-						// if this button is clicked, close
-						// current activity
-						Intent i = new Intent(
-								getApplicationContext(),
-								ShowScore.class);
-						time = text.getText() + "";
+						.setMessage("Click yes to exit!")
+						.setCancelable(false)
+						.setPositiveButton("Yes",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										// if this button is clicked, close
+										// current activity
+										Intent i = new Intent(
+												getApplicationContext(),
+												ShowScore.class);
+										time = text.getText() + "";
 
-						sec = sec + 40;
-						String timetaken = min + "." + sec + "";
+										sec = sec + 40;
+										String timetaken = min + "." + sec + "";
 
-						double timetak = Float
-								.parseFloat(timetaken);
+										double timetak = Float
+												.parseFloat(timetaken);
 
-						double tt = 20.00 - timetak;
+										double tt = 20.00 - timetak;
 
-						DecimalFormat df = new DecimalFormat(
-								"00.00");
-						String j = df.format(tt);
-						String tempJ=currencyConvert(j);
-						j=tempJ;
-						i.putExtra("score", ans);
-						i.putExtra("givenans", givenans);
-						i.putExtra("allid", a);
-						i.putExtra("tt", j);
-						i.putExtra("category", cat);
+										DecimalFormat df = new DecimalFormat(
+												"00.00");
+										String j = df.format(tt);
 
-						startActivity(i);
-						TestPage.this.finish();
-					}
-				})
-				.setNegativeButton("No",
-						new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog,
-							int id) {
-						// if this button is clicked, just close
-						// the dialog box and do nothing
-						dialog.cancel();
+										i.putExtra("score", ans);
+										i.putExtra("givenans", givenans);
+										i.putExtra("allid", a);
+										i.putExtra("tt", j);
+										i.putExtra("category", cat);
 
-					}
-				});
+										startActivity(i);
+										TestPage.this.finish();
+									}
+								})
+						.setNegativeButton("No",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										// if this button is clicked, just close
+										// the dialog box and do nothing
+										dialog.cancel();
+
+									}
+								});
 
 				// create alert dialog
 				AlertDialog alertDialog = alertDialogBuilder.create();
@@ -609,20 +520,10 @@ public class TestPage extends Activity implements OnClickListener
 		givenans[0] = initans[count];
 		t2.setText("   " + "1/20");
 		String j = q.getQues();
-		String tempJ=currencyConvert(j);
-		j=tempJ;
 		String opt1 = q.getOption1();
-		String tempOpt1=currencyConvert(opt1);
-		opt1=tempOpt1;
 		String opt2 = q.getOption2();
-		String tempOpt2=currencyConvert(opt2);
-		opt2=tempOpt2;
 		String opt3 = q.getOption3();
-		String tempOpt3=currencyConvert(opt3);
-		opt3=tempOpt3;
 		String opt4 = q.getOption4();
-		String tempOpt4=currencyConvert(opt4);
-		opt4=tempOpt4;
 		t1.setText(j);
 		b1.setText(opt1);
 		b2.setText(opt2);
@@ -680,21 +581,12 @@ public class TestPage extends Activity implements OnClickListener
 					QuantsTable q = db.getQuants(val, cat);
 					// i=i+1;
 					String j = q.getQues();
-					String tempJ=currencyConvert(j);
-					j=tempJ;
 					t1.setText(j);
+
 					String opt1 = q.getOption1();
-					String tempOpt1=currencyConvert(opt1);
-					opt1=tempOpt1;
 					String opt2 = q.getOption2();
-					String tempOpt2=currencyConvert(opt2);
-					opt2=tempOpt2;
 					String opt3 = q.getOption3();
-					String tempOpt3=currencyConvert(opt3);
-					opt3=tempOpt3;
 					String opt4 = q.getOption4();
-					String tempOpt4=currencyConvert(opt4);
-					opt4=tempOpt4;
 					// t1.setText();
 					b1.setText(opt1);
 					b2.setText(opt2);
@@ -746,22 +638,12 @@ public class TestPage extends Activity implements OnClickListener
 					QuantsTable q = db.getQuants(val, cat);
 					// i=i+1;
 					String j = q.getQues();
-					String tempJ=currencyConvert(j);
-					j=tempJ;
 					t1.setText(j);
 					t2.setText("   " + (click + 1) + "/20");
 					String opt1 = q.getOption1();
-					String tempOpt1=currencyConvert(opt1);
-					opt1=tempOpt1;
 					String opt2 = q.getOption2();
-					String tempOpt2=currencyConvert(opt2);
-					opt2=tempOpt2;
 					String opt3 = q.getOption3();
-					String tempOpt3=currencyConvert(opt3);
-					opt3=tempOpt3;
 					String opt4 = q.getOption4();
-					String tempOpt4=currencyConvert(opt4);
-					opt4=tempOpt4;
 					t1.setText(j);
 					b1.setText(opt1);
 					b2.setText(opt2);
@@ -799,7 +681,7 @@ public class TestPage extends Activity implements OnClickListener
 		public void onFinish() {
 			text.setText("Time's up!");
 			AlertDialog alertDialog = new AlertDialog.Builder(TestPage.this)
-			.create();
+					.create();
 
 			TextView title = new TextView(context);
 			title.setText("Aptitude App");
@@ -836,8 +718,6 @@ public class TestPage extends Activity implements OnClickListener
 
 					DecimalFormat df = new DecimalFormat("00.00");
 					String j = df.format(tt);
-					String tempJ=currencyConvert(j);
-					j=tempJ;
 					i.putExtra("tt", j);
 
 					i.putExtra("score", ans);

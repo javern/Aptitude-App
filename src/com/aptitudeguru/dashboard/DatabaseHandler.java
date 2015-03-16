@@ -2,13 +2,14 @@ package com.aptitudeguru.dashboard;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.text.DecimalFormat;
 //import com.example.taptap.DBH;
+
+import java.util.Locale;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -517,13 +518,76 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		QuantsTable quants = new QuantsTable(Integer.parseInt(cursor
-				.getString(0)), cursor.getString(1), cursor.getString(2),
-				cursor.getString(3), cursor.getString(4), cursor.getString(5),
-				cursor.getString(6), cursor.getString(7));
+				.getString(0)), currencyConvert(cursor.getString(1)), cursor.getString(2),
+				currencyConvert(cursor.getString(3)), currencyConvert(cursor.getString(4)), currencyConvert(cursor.getString(5)),
+				currencyConvert(cursor.getString(6)), cursor.getString(7));
 		// return contact
 		db.close();
 		return quants;
 
+	}
+	
+	public String accDecimal(double decimal) {
+		if (decimal == (long) decimal)
+			return String.format("%d", (long) decimal);
+		else
+			return String.format("%.2f", decimal);
+	}
+	
+	String getCountry = Locale.getDefault().getCountry();
+
+	public String currencyConvert(String cConvert) {
+		if (cConvert.contains("Rs.")) {
+			String[] cSplit = cConvert.split("\\s+");
+			// for loop and if Rs. is detected then
+			for (int i = 0; i < cSplit.length; i++) {
+				if (cSplit[i].contains("Rs.")) {
+					if (getCountry.equals("GB"))
+						cSplit[i] = "£";
+					else if (getCountry.equals("US"))
+						cSplit[i] = "$";
+					else if (getCountry.equals("FR"))
+						cSplit[i] = "€";
+					try {
+						double curConvert = Double.parseDouble(cSplit[i + 1]);
+						curConvert = currencyMultiplier(curConvert);
+						// int tempIntCurrency = (int) Math.round(curConvert);
+						cSplit[i + 1] = accDecimal(curConvert);
+						// cSplit[i+1]=Integer.toString(tempIntCurrency);
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			StringBuffer result = new StringBuffer();
+			for (int i = 0; i < cSplit.length; i++) {
+				result.append(cSplit[i]);
+				if ((!(cSplit[i].equals("£")) && (!(cSplit[i].equals("$"))) && (!(cSplit[i]
+						.equals("€"))))) {
+					if ((cSplit.length - i > 0))
+						result.append(" ");
+				}
+			}
+			String tempString = result.toString();
+			cConvert = tempString;
+		}
+		return cConvert;
+	}
+
+	public double currencyMultiplier(double toConvert) {
+		double convertedValue = 0;
+		if (getCountry.equals("GB")) {
+			final double rsToGBP = 0.011;
+			convertedValue = toConvert * rsToGBP;
+		} else if (getCountry.equals("US")) {
+			final double rsToUS = 0.016;
+			convertedValue = toConvert * rsToUS;
+		} else if (getCountry.equals("FR")) {
+			final double rsToEU = 0.015;
+			convertedValue = toConvert * rsToEU;
+		}
+		return convertedValue;
 	}
 
 	QuantsTable getQuants(int id) {
