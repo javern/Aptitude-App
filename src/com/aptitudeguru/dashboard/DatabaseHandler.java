@@ -505,7 +505,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	}
 
 	// Getting single quants
-	QuantsTable getQuants(int id, String cat) {
+	public QuantsTable getQuants(int id, String cat) {
 		SQLiteDatabase db = this.getReadableDatabase();
 		// String where = "KEY_QUANTSID=? AND KEY_QUANTSCAT=? ";
 		Cursor cursor = db.query(TABLE_QUANTS, new String[] { KEY_QUANTSID,
@@ -523,8 +523,55 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				currencyConvert(cursor.getString(6)), cursor.getString(7));
 		// return contact
 		db.close();
+		
 		return quants;
 
+	}
+	
+	private String convertDistance(String src) 
+	{
+		Locale deviceLocale = Locale.getDefault();
+
+		if (deviceLocale.equals(Locale.UK)) 
+		{
+			src = src.replaceAll("km ", "miles ");
+			src = src.replaceAll("kmph", "mph");
+			src = src.replaceAll("km/h", "mph");
+			src = src.replaceAll("paise", "pence");
+
+			return src;
+		} 
+		else if (deviceLocale.equals(Locale.US)) 
+		{
+			src = src.replaceAll("km ", "miles ");
+			src = src.replaceAll("kmph", "mph");
+			src = src.replaceAll("km/h", "mph");
+			src = src.replaceAll("metres", "feet");
+			src = src.replaceAll("paise", "cents");
+
+			return src;
+		} 
+		else if (deviceLocale.equals(Locale.FRANCE)) 
+		{
+			src = src.replaceAll("miles ", "km ");
+			src = src.replaceAll("mph", "km/h");
+			src = src.replaceAll("feet", "metres");
+			src = src.replaceAll("paise", "cents");
+			src = src.replaceAll("ft", "metres");
+
+			return src;
+		}
+		// Default to UK if the device is set to anything other than US or France.
+		// Uk can be removed and only this can be left, because it should work the same way.
+		else 
+		{
+			src = src.replaceAll("km ", "miles ");
+			src = src.replaceAll("kmph", "mph");
+			src = src.replaceAll("km/h", "mph");
+			src = src.replaceAll("paise", "cents");
+
+			return src;
+		}
 	}
 	
 	public String accDecimal(double decimal) {
@@ -547,7 +594,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 					else if (getCountry.equals("US"))
 						cSplit[i] = "$";
 					else if (getCountry.equals("FR"))
-						cSplit[i] = "€";
+						cSplit[i] = "€";					
 					try {
 						double curConvert = Double.parseDouble(cSplit[i + 1]);
 						curConvert = currencyMultiplier(curConvert);
@@ -572,7 +619,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			String tempString = result.toString();
 			cConvert = tempString;
 		}
-		return cConvert;
+		
+		String cConvertPlusDistance = convertDistance(cConvert);
+		
+		return cConvertPlusDistance;
 	}
 
 	public double currencyMultiplier(double toConvert) {
@@ -590,7 +640,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		return convertedValue;
 	}
 
-	QuantsTable getQuants(int id) {
+	public QuantsTable getQuants(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.query(TABLE_QUANTS, new String[] { KEY_QUANTSID,
 				KEY_QUANTSQUES, KEY_QUANTSCAT, KEY_OPTION1, KEY_OPTION2,
