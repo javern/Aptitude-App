@@ -64,27 +64,6 @@ public class Tutorialpage extends Activity implements OnTouchListener {
 
 
 	public void pdfcommon(String temp) {
-
-    AssetManager assetManager = getAssets();
-
-    InputStream in = null;
-    OutputStream out = null;
-    File file = new File(getFilesDir(), temp);
-    try {
-        in = assetManager.open(temp);
-        out = openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
-
-        copyFile(in, out);
-        in.close();
-        in = null;
-        out.flush();
-        out.close();
-        out = null;
-    } catch (Exception e) {
-        Log.e("tag", e.getMessage());
-    }
-
-    //Intent intent = new Intent(Intent.ACTION_VIEW);
     setContentView(R.layout.webview);
 	webView = (WebView) findViewById(R.id.webView1);
 	WebSettings settings = webView.getSettings();
@@ -94,30 +73,8 @@ public class Tutorialpage extends Activity implements OnTouchListener {
 	settings.setAllowUniversalAccessFromFileURLs(true);
 	settings.setBuiltInZoomControls(true);
 	webView.setWebChromeClient(new WebChromeClient());
-	//webView.loadUrl("file://" + getFilesDir() + "/" + temp);
 	webView.loadUrl("file:///android_asset/pdfviewer/index.html?pdf=" + temp);
-    /*intent.setDataAndType(
-            Uri.parse("file://" + getFilesDir() + "/" + temp),
-            "application/pdf");
-
-    startActivity(intent);*/
 	}
-
-/*	//    	reload on resume
-	@Override
-	protected void onResume() {
-		super.onResume();
-		webView.loadUrl( "javascript:window.location.reload( true )" );
-
-	}
-
-	//    	clear cache to ensure we have good reload
-	@Override
-	protected void onPause() {
-		super.onPause();
-		webView.clearCache(true);
-
-	}*/
 
 	private void copyFile(InputStream in, OutputStream out) throws IOException {
 		byte[] buffer = new byte[1024];
