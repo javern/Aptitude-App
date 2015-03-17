@@ -554,7 +554,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		else if (deviceLocale.equals(Locale.FRANCE)) 
 		{
 			src = src.replaceAll("miles ", "km ");
-			src = src.replaceAll("mph", "km/h");
+			src = src.replaceAll(" mph", "km/h");
 			src = src.replaceAll("feet", "metres");
 			src = src.replaceAll("paise", "cents");
 			src = src.replaceAll("ft", "metres");
