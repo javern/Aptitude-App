@@ -16,10 +16,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-	
+
 	private static final int DATABASE_VERSION = 1;
 
-	
+
 	private static final String DATABASE_NAME = "aptitudedatabase";
 
 
@@ -43,7 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String KEY_PUZZLEQUES = "puzzleques";
 	private static final String KEY_PUZZLESOL = "sol";
 
-	
+
 	private static final String KEY_SBID = "sbid";
 	private static final String KEY_SBSECTION = "sbsection";
 	private static final String KEY_SBSUBSECTION = "sbsubsection";
@@ -51,7 +51,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String KEY_SBSCORE = "sbscore";
 	private static final String KEY_SBTT = "sbtt";
 
-	
+
 	private static final String KEY_QUANTSID = "quantsid";
 	private static final String KEY_QUANTSQUES = "quantsques";
 	private static final String KEY_QUANTSCAT = "quantscat";
@@ -252,9 +252,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		// Contact Phone
 
 		// Inserting Row
-		
+
 		db.insert(TABLE_PUZZLETABLE, null, values);
-		
+
 		db.close(); // Closing database connection
 	}
 
@@ -274,7 +274,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		// Inserting Row
 		db.insert(TABLE_SBTABLE, null, values);
-		
+
 		db.close(); // Closing database connection
 	}
 
@@ -296,12 +296,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		// Inserting Row
 		db.insert(TABLE_FAVOURITE, null, values);
-		
+
 		db.close(); // Closing database connection
 	}
 
 	// Adding new TUTORIAL
-	
+
 
 	// Adding new QUANTS
 	void addQuants(QuantsTable quants) {
@@ -316,7 +316,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_OPTION4, quants.getOption4());
 		values.put(KEY_QUANTSSOL, quants.getSol());
 		// Contact Phone
-		
+
 		// Inserting Row
 		db.insert(TABLE_QUANTS, null, values);
 		db.close(); // Closing database connection
@@ -361,7 +361,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		// Inserting Row
 
 		db.insert(TABLE_CPPLANGUAGE, null, values);
-		
+
 		db.close(); // Closing database connection
 	}
 
@@ -383,7 +383,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		// Inserting Row
 
 		db.insert(TABLE_JAVALANGUAGE, null, values);
-		
+
 		db.close(); // Closing database connection
 	}
 
@@ -424,7 +424,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		// Inserting Row
 		db.insert(TABLE_VL, null, values);
-		
+
 		db.close(); // Closing database connection
 	}
 
@@ -511,9 +511,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		Cursor cursor = db.query(TABLE_QUANTS, new String[] { KEY_QUANTSID,
 				KEY_QUANTSQUES, KEY_QUANTSCAT, KEY_OPTION1, KEY_OPTION2,
 				KEY_OPTION3, KEY_OPTION4, KEY_QUANTSSOL }, KEY_QUANTSID + "=?"
-				+ " AND " + KEY_QUANTSCAT + "=" + "'" + cat + "'",
-				new String[] { String.valueOf(id) }, null, null, null, null);
-		
+						+ " AND " + KEY_QUANTSCAT + "=" + "'" + cat + "'",
+						new String[] { String.valueOf(id) }, null, null, null, null);
+
 		if (cursor != null)
 			cursor.moveToFirst();
 
@@ -523,11 +523,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				currencyConvert(cursor.getString(6)), cursor.getString(7));
 		// return contact
 		db.close();
-		
+
 		return quants;
 
 	}
-	
+
 	private String convertDistance(String src) 
 	{
 		Locale deviceLocale = Locale.getDefault();
@@ -573,14 +573,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			return src;
 		}
 	}
-	
+
 	public String accDecimal(double decimal) {
 		if (decimal == (long) decimal)
 			return String.format("%d", (long) decimal);
 		else
 			return String.format("%.2f", decimal);
 	}
-	
+
 	String getCountry = Locale.getDefault().getCountry();
 
 	public String currencyConvert(String cConvert) {
@@ -594,7 +594,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 					else if (getCountry.equals("US"))
 						cSplit[i] = "$";
 					else if (getCountry.equals("FR"))
-						cSplit[i] = "€";					
+						cSplit[i] = "€";
+					// Default to UK if the device is set to anything other than US or France.
+					else
+						cSplit[i] = "£";
 					try {
 						double curConvert = Double.parseDouble(cSplit[i + 1]);
 						curConvert = currencyMultiplier(curConvert);
@@ -619,9 +622,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			String tempString = result.toString();
 			cConvert = tempString;
 		}
-		
+
 		String cConvertPlusDistance = convertDistance(cConvert);
-		
+
 		return cConvertPlusDistance;
 	}
 
@@ -637,1187 +640,1192 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			final double rsToEU = 0.015;
 			convertedValue = toConvert * rsToEU;
 		}
-		return convertedValue;
-	}
-
-	public QuantsTable getQuants(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.query(TABLE_QUANTS, new String[] { KEY_QUANTSID,
-				KEY_QUANTSQUES, KEY_QUANTSCAT, KEY_OPTION1, KEY_OPTION2,
-				KEY_OPTION3, KEY_OPTION4, KEY_QUANTSSOL }, KEY_QUANTSID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
-		
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		QuantsTable quants = new QuantsTable(Integer.parseInt(cursor
-				.getString(0)), cursor.getString(1), cursor.getString(2),
-				cursor.getString(3), cursor.getString(4), cursor.getString(5),
-				cursor.getString(6), cursor.getString(7));
-		// return contact
-		db.close();
-		return quants;
-
-	}
-
-	// Getting single c language
-	CTable getC(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_CLANGUAGE, new String[] {
-				KEY_CLANGUAGEID,  KEY_CLANGUAGEQUES,KEY_CCAT, KEY_OPTION1,
-				KEY_OPTION2, KEY_OPTION3, KEY_OPTION4, KEY_CSOL },
-				KEY_CLANGUAGEID + "=?", new String[] { String.valueOf(id) },
-				null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		CTable c = new CTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6),
-				cursor.getString(7));
-		// return contact
-		return c;
-	}
-	
-	CTable getC(int id,String cat) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_CLANGUAGE, new String[] {
-				KEY_CLANGUAGEID, KEY_CLANGUAGEQUES, KEY_CCAT, KEY_OPTION1,
-				KEY_OPTION2, KEY_OPTION3, KEY_OPTION4, KEY_CSOL },
-				KEY_CLANGUAGEID + "=?" 	+ " AND " + KEY_CCAT + "=" + "'" + cat + "'", new String[] { String.valueOf(id) },
-				null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		CTable c = new CTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6),
-				cursor.getString(7));
-		// return contact
-		return c;
-	}
-
-
-	// Getting single cpp language
-	CppTable getCpp(int id, String cat) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_CPPLANGUAGE,
-				new String[] { KEY_CPPLANGUAGEID, KEY_CPPLANGUAGEQUES,
-						KEY_CPPCAT, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3,
-						KEY_OPTION4, KEY_CPPSOL }, KEY_CPPLANGUAGEID + "=?"
-						+ " AND " + KEY_CPPCAT + "=" + "'" + cat + "'",
-				new String[] { String.valueOf(id) }, null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		CppTable cpp = new CppTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6),
-				cursor.getString(7));
-		// return contact
-		return cpp;
-	}
-
-	CppTable getCpp(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_CPPLANGUAGE,
-				new String[] { KEY_CPPLANGUAGEID, KEY_CPPLANGUAGEQUES,
-						KEY_CPPCAT, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3,
-						KEY_OPTION4, KEY_CPPSOL }, KEY_CPPLANGUAGEID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		CppTable cpp = new CppTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6),
-				cursor.getString(7));
-		// return contact
-		return cpp;
-	}
-
-	// Getting single java language
-	JavaTable getJava(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_JAVALANGUAGE,
-				new String[] { KEY_JAVALANGUAGEID, 
-						KEY_JAVALANGUAGEQUES,KEY_JAVACAT, KEY_OPTION1, KEY_OPTION2,
-						KEY_OPTION3, KEY_OPTION4, KEY_JAVASOL },
-				KEY_JAVALANGUAGEID + "=?", new String[] { String.valueOf(id) },
-				null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		JavaTable j = new JavaTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6),
-				cursor.getString(7));
-		// return contact
-		return j;
-	}
-
-	JavaTable getJava(int id,String cat) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_JAVALANGUAGE,
-				new String[] { KEY_JAVALANGUAGEID, 
-						KEY_JAVALANGUAGEQUES,KEY_JAVACAT, KEY_OPTION1, KEY_OPTION2,
-						KEY_OPTION3, KEY_OPTION4, KEY_JAVASOL },
-				KEY_JAVALANGUAGEID + "=?" + " AND " + KEY_JAVACAT + "=" + "'" + cat + "'", new String[] { String.valueOf(id) },
-				null, null, null, null);
-		
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		JavaTable j = new JavaTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6),
-				cursor.getString(7));
-		
-		// return contact
-		return j;
-	}
-	
-	// Getting single HTML language
-	HTMLTable getHTML(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_HTMLLANGUAGE, new String[] {
-				KEY_HTMLLANGUAGEID, KEY_HTMLLANGUAGEQUES, KEY_OPTION1,
-				KEY_OPTION2, KEY_OPTION3, KEY_OPTION4, KEY_HTMLSOL },
-				KEY_HTMLLANGUAGEID + "=?", new String[] { String.valueOf(id) },
-				null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		HTMLTable j = new HTMLTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6));
-		// return contact
-		return j;
-	}
-
-	// Getting single VER AND LOGIC
-	VLTable getVL(int id, String cat) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_VL, new String[] { KEY_VLID, KEY_VLQUES,
-				KEY_VLCAT, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3, KEY_OPTION4,
-				KEY_VLSOL }, KEY_VLID + "=?" + " AND " + KEY_VLCAT + "=" + "'"
-				+ cat + "'", new String[] { String.valueOf(id) }, null, null,
-				null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		VLTable v = new VLTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6),
-				cursor.getString(7));
-		// return contact
-		return v;
-	}
-
-	VLTable getVL(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_VL, new String[] { KEY_VLID, KEY_VLQUES,
-				KEY_VLCAT, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3, KEY_OPTION4,
-				KEY_VLSOL }, KEY_VLID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		VLTable v = new VLTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6),
-				cursor.getString(7));
-		// return contact
-		return v;
-	}
-
-	// Getting single OS
-	OSTable getOS(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_OS,
-				new String[] { KEY_OSID, KEY_OSQUES, KEY_OPTION1, KEY_OPTION2,
-						KEY_OPTION3, KEY_OPTION4, KEY_OSSOL }, KEY_OSID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		OSTable v = new OSTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6));
-		// return contact
-		return v;
-	}
-
-	// Getting single puzzle
-	PuzzleTable getPuzzle(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_PUZZLETABLE, new String[] {
-				KEY_PUZZLEID, KEY_PUZZLEQUES, KEY_PUZZLESOL }, KEY_PUZZLEID
-				+ "=?", new String[] { String.valueOf(id) }, null, null, null,
-				null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		PuzzleTable v = new PuzzleTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2));
-		// return contact
-		return v;
-	}
-
-	// Getting single DBMS
-	DBMSTable getDBMS(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_DBMS, new String[] { KEY_DBMSID,
-				KEY_DBMSQUES, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3,
-				KEY_OPTION4, KEY_DBMSSOL }, KEY_DBMSID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		DBMSTable v = new DBMSTable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6));
-		// return contact
-		return v;
-	}
-
-	// Getting single DSA
-	DSATable getDSA(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_DSA, new String[] { KEY_DSAID,
-				KEY_DSAQUES, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3,
-				KEY_OPTION4, KEY_DSASOL }, KEY_DSAID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		DSATable v = new DSATable(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6));
-		// return contact
-		return v;
-	}
-
-	// Getting single tuts
-
-
-	//
-	// Getting single fav
-	Favourite getFav(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_FAVOURITE, new String[] {
-				KEY_FAVOURITEID, KEY_FAVOURITEQUES, KEY_OPTION1, KEY_OPTION2,
-				KEY_OPTION3, KEY_OPTION4, KEY_FAVOURITESOL }, KEY_FAVOURITEID
-				+ "=?", new String[] { String.valueOf(id) }, null, null, null,
-				null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		Favourite v = new Favourite(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4), cursor.getString(5), cursor.getString(6));
-		// return contact
-		return v;
-	}
-
-	// Getting All sbtable
-	public List<sbtable> getAllsbtable(String cat) {
-		List<sbtable> quantsList = new ArrayList<sbtable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_SBTABLE + " where "
-				+ KEY_SBSUBSECTION + "=" + "'" + cat + "'";
-		
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-		
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-
-				
-				sbtable quants = new sbtable();
-				quants.setID(Integer.parseInt(cursor.getString(0)));
-				quants.setSection(cursor.getString(1));
-				quants.setSubsection(cursor.getString(2));
-				quants.setdatetime(cursor.getString(3));
-				quants.setScore(cursor.getString(4));
-				quants.settt(cursor.getString(5));
-
-				// Adding contact to list
-				quantsList.add(quants);
-
-				
-			} while (cursor.moveToNext());
+		else
+		{
+			final double rsToGBP = 0.011;
+			convertedValue = toConvert * rsToGBP;
 		}
+	return convertedValue;
+}
 
-		// return contact list
-		db.close();
-		return quantsList;
+public QuantsTable getQuants(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.query(TABLE_QUANTS, new String[] { KEY_QUANTSID,
+			KEY_QUANTSQUES, KEY_QUANTSCAT, KEY_OPTION1, KEY_OPTION2,
+			KEY_OPTION3, KEY_OPTION4, KEY_QUANTSSOL }, KEY_QUANTSID + "=?",
+			new String[] { String.valueOf(id) }, null, null, null, null);
+
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	QuantsTable quants = new QuantsTable(Integer.parseInt(cursor
+			.getString(0)), cursor.getString(1), cursor.getString(2),
+			cursor.getString(3), cursor.getString(4), cursor.getString(5),
+			cursor.getString(6), cursor.getString(7));
+	// return contact
+	db.close();
+	return quants;
+
+}
+
+// Getting single c language
+CTable getC(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_CLANGUAGE, new String[] {
+			KEY_CLANGUAGEID,  KEY_CLANGUAGEQUES,KEY_CCAT, KEY_OPTION1,
+			KEY_OPTION2, KEY_OPTION3, KEY_OPTION4, KEY_CSOL },
+			KEY_CLANGUAGEID + "=?", new String[] { String.valueOf(id) },
+			null, null, null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	CTable c = new CTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6),
+			cursor.getString(7));
+	// return contact
+	return c;
+}
+
+CTable getC(int id,String cat) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_CLANGUAGE, new String[] {
+			KEY_CLANGUAGEID, KEY_CLANGUAGEQUES, KEY_CCAT, KEY_OPTION1,
+			KEY_OPTION2, KEY_OPTION3, KEY_OPTION4, KEY_CSOL },
+			KEY_CLANGUAGEID + "=?" 	+ " AND " + KEY_CCAT + "=" + "'" + cat + "'", new String[] { String.valueOf(id) },
+			null, null, null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	CTable c = new CTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6),
+			cursor.getString(7));
+	// return contact
+	return c;
+}
+
+
+// Getting single cpp language
+CppTable getCpp(int id, String cat) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_CPPLANGUAGE,
+			new String[] { KEY_CPPLANGUAGEID, KEY_CPPLANGUAGEQUES,
+			KEY_CPPCAT, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3,
+			KEY_OPTION4, KEY_CPPSOL }, KEY_CPPLANGUAGEID + "=?"
+					+ " AND " + KEY_CPPCAT + "=" + "'" + cat + "'",
+					new String[] { String.valueOf(id) }, null, null, null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	CppTable cpp = new CppTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6),
+			cursor.getString(7));
+	// return contact
+	return cpp;
+}
+
+CppTable getCpp(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_CPPLANGUAGE,
+			new String[] { KEY_CPPLANGUAGEID, KEY_CPPLANGUAGEQUES,
+			KEY_CPPCAT, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3,
+			KEY_OPTION4, KEY_CPPSOL }, KEY_CPPLANGUAGEID + "=?",
+			new String[] { String.valueOf(id) }, null, null, null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	CppTable cpp = new CppTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6),
+			cursor.getString(7));
+	// return contact
+	return cpp;
+}
+
+// Getting single java language
+JavaTable getJava(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_JAVALANGUAGE,
+			new String[] { KEY_JAVALANGUAGEID, 
+			KEY_JAVALANGUAGEQUES,KEY_JAVACAT, KEY_OPTION1, KEY_OPTION2,
+			KEY_OPTION3, KEY_OPTION4, KEY_JAVASOL },
+			KEY_JAVALANGUAGEID + "=?", new String[] { String.valueOf(id) },
+			null, null, null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	JavaTable j = new JavaTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6),
+			cursor.getString(7));
+	// return contact
+	return j;
+}
+
+JavaTable getJava(int id,String cat) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_JAVALANGUAGE,
+			new String[] { KEY_JAVALANGUAGEID, 
+			KEY_JAVALANGUAGEQUES,KEY_JAVACAT, KEY_OPTION1, KEY_OPTION2,
+			KEY_OPTION3, KEY_OPTION4, KEY_JAVASOL },
+			KEY_JAVALANGUAGEID + "=?" + " AND " + KEY_JAVACAT + "=" + "'" + cat + "'", new String[] { String.valueOf(id) },
+			null, null, null, null);
+
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	JavaTable j = new JavaTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6),
+			cursor.getString(7));
+
+	// return contact
+	return j;
+}
+
+// Getting single HTML language
+HTMLTable getHTML(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_HTMLLANGUAGE, new String[] {
+			KEY_HTMLLANGUAGEID, KEY_HTMLLANGUAGEQUES, KEY_OPTION1,
+			KEY_OPTION2, KEY_OPTION3, KEY_OPTION4, KEY_HTMLSOL },
+			KEY_HTMLLANGUAGEID + "=?", new String[] { String.valueOf(id) },
+			null, null, null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	HTMLTable j = new HTMLTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6));
+	// return contact
+	return j;
+}
+
+// Getting single VER AND LOGIC
+VLTable getVL(int id, String cat) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_VL, new String[] { KEY_VLID, KEY_VLQUES,
+			KEY_VLCAT, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3, KEY_OPTION4,
+			KEY_VLSOL }, KEY_VLID + "=?" + " AND " + KEY_VLCAT + "=" + "'"
+					+ cat + "'", new String[] { String.valueOf(id) }, null, null,
+					null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	VLTable v = new VLTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6),
+			cursor.getString(7));
+	// return contact
+	return v;
+}
+
+VLTable getVL(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_VL, new String[] { KEY_VLID, KEY_VLQUES,
+			KEY_VLCAT, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3, KEY_OPTION4,
+			KEY_VLSOL }, KEY_VLID + "=?",
+			new String[] { String.valueOf(id) }, null, null, null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	VLTable v = new VLTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6),
+			cursor.getString(7));
+	// return contact
+	return v;
+}
+
+// Getting single OS
+OSTable getOS(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_OS,
+			new String[] { KEY_OSID, KEY_OSQUES, KEY_OPTION1, KEY_OPTION2,
+			KEY_OPTION3, KEY_OPTION4, KEY_OSSOL }, KEY_OSID + "=?",
+			new String[] { String.valueOf(id) }, null, null, null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	OSTable v = new OSTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6));
+	// return contact
+	return v;
+}
+
+// Getting single puzzle
+PuzzleTable getPuzzle(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_PUZZLETABLE, new String[] {
+			KEY_PUZZLEID, KEY_PUZZLEQUES, KEY_PUZZLESOL }, KEY_PUZZLEID
+			+ "=?", new String[] { String.valueOf(id) }, null, null, null,
+			null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	PuzzleTable v = new PuzzleTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2));
+	// return contact
+	return v;
+}
+
+// Getting single DBMS
+DBMSTable getDBMS(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_DBMS, new String[] { KEY_DBMSID,
+			KEY_DBMSQUES, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3,
+			KEY_OPTION4, KEY_DBMSSOL }, KEY_DBMSID + "=?",
+			new String[] { String.valueOf(id) }, null, null, null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	DBMSTable v = new DBMSTable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6));
+	// return contact
+	return v;
+}
+
+// Getting single DSA
+DSATable getDSA(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_DSA, new String[] { KEY_DSAID,
+			KEY_DSAQUES, KEY_OPTION1, KEY_OPTION2, KEY_OPTION3,
+			KEY_OPTION4, KEY_DSASOL }, KEY_DSAID + "=?",
+			new String[] { String.valueOf(id) }, null, null, null, null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	DSATable v = new DSATable(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6));
+	// return contact
+	return v;
+}
+
+// Getting single tuts
+
+
+//
+// Getting single fav
+Favourite getFav(int id) {
+	SQLiteDatabase db = this.getReadableDatabase();
+
+	Cursor cursor = db.query(TABLE_FAVOURITE, new String[] {
+			KEY_FAVOURITEID, KEY_FAVOURITEQUES, KEY_OPTION1, KEY_OPTION2,
+			KEY_OPTION3, KEY_OPTION4, KEY_FAVOURITESOL }, KEY_FAVOURITEID
+			+ "=?", new String[] { String.valueOf(id) }, null, null, null,
+			null);
+	if (cursor != null)
+		cursor.moveToFirst();
+
+	Favourite v = new Favourite(Integer.parseInt(cursor.getString(0)),
+			cursor.getString(1), cursor.getString(2), cursor.getString(3),
+			cursor.getString(4), cursor.getString(5), cursor.getString(6));
+	// return contact
+	return v;
+}
+
+// Getting All sbtable
+public List<sbtable> getAllsbtable(String cat) {
+	List<sbtable> quantsList = new ArrayList<sbtable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_SBTABLE + " where "
+			+ KEY_SBSUBSECTION + "=" + "'" + cat + "'";
+
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
+
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+
+
+			sbtable quants = new sbtable();
+			quants.setID(Integer.parseInt(cursor.getString(0)));
+			quants.setSection(cursor.getString(1));
+			quants.setSubsection(cursor.getString(2));
+			quants.setdatetime(cursor.getString(3));
+			quants.setScore(cursor.getString(4));
+			quants.settt(cursor.getString(5));
+
+			// Adding contact to list
+			quantsList.add(quants);
+
+
+		} while (cursor.moveToNext());
 	}
 
-	// Getting All Tuts
+	// return contact list
+	db.close();
+	return quantsList;
+}
 
-	// Getting All Quants
-	public List<QuantsTable> getAllQuants(String cat) {
-		List<QuantsTable> quantsList = new ArrayList<QuantsTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_QUANTS + " where "
-				+ KEY_QUANTSCAT + "=" + "'" + cat + "'";
-		
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-	
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
+// Getting All Tuts
 
-				
-				QuantsTable quants = new QuantsTable();
-				quants.setID(Integer.parseInt(cursor.getString(0)));
-				quants.setQues(cursor.getString(1));
-				quants.setCat(cursor.getString(2));
-				quants.setOption1(cursor.getString(3));
-				quants.setOption2(cursor.getString(4));
-				quants.setOption3(cursor.getString(5));
-				quants.setOption4(cursor.getString(6));
-				quants.setSol(cursor.getString(7));
-				// Adding contact to list
-				quantsList.add(quants);
+// Getting All Quants
+public List<QuantsTable> getAllQuants(String cat) {
+	List<QuantsTable> quantsList = new ArrayList<QuantsTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_QUANTS + " where "
+			+ KEY_QUANTSCAT + "=" + "'" + cat + "'";
 
-				
-			} while (cursor.moveToNext());
-		}
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// return contact list
-		db.close();
-		return quantsList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+
+
+			QuantsTable quants = new QuantsTable();
+			quants.setID(Integer.parseInt(cursor.getString(0)));
+			quants.setQues(cursor.getString(1));
+			quants.setCat(cursor.getString(2));
+			quants.setOption1(cursor.getString(3));
+			quants.setOption2(cursor.getString(4));
+			quants.setOption3(cursor.getString(5));
+			quants.setOption4(cursor.getString(6));
+			quants.setSol(cursor.getString(7));
+			// Adding contact to list
+			quantsList.add(quants);
+
+
+		} while (cursor.moveToNext());
 	}
 
-	public List<QuantsTable> getAllQuants() {
-		List<QuantsTable> quantsList = new ArrayList<QuantsTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_QUANTS ;
-		;
-		
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-	
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
+	// return contact list
+	db.close();
+	return quantsList;
+}
 
-				
-				QuantsTable quants = new QuantsTable();
-				quants.setID(Integer.parseInt(cursor.getString(0)));
-				quants.setQues(cursor.getString(1));
-				quants.setCat(cursor.getString(2));
-				quants.setOption1(cursor.getString(3));
-				quants.setOption2(cursor.getString(4));
-				quants.setOption3(cursor.getString(5));
-				quants.setOption4(cursor.getString(6));
-				quants.setSol(cursor.getString(7));
-				// Adding contact to list
-				quantsList.add(quants);
+public List<QuantsTable> getAllQuants() {
+	List<QuantsTable> quantsList = new ArrayList<QuantsTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_QUANTS ;
+	;
 
-				
-			} while (cursor.moveToNext());
-		}
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// return contact list
-		db.close();
-		return quantsList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+
+
+			QuantsTable quants = new QuantsTable();
+			quants.setID(Integer.parseInt(cursor.getString(0)));
+			quants.setQues(cursor.getString(1));
+			quants.setCat(cursor.getString(2));
+			quants.setOption1(cursor.getString(3));
+			quants.setOption2(cursor.getString(4));
+			quants.setOption3(cursor.getString(5));
+			quants.setOption4(cursor.getString(6));
+			quants.setSol(cursor.getString(7));
+			// Adding contact to list
+			quantsList.add(quants);
+
+
+		} while (cursor.moveToNext());
 	}
 
-	// Getting All C language
-	public List<CTable> getAllC(String cat) {
-		List<CTable> cList = new ArrayList<CTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_CLANGUAGE + " where "
-				+ KEY_CCAT + "=" + "'" + cat + "'";
+	// return contact list
+	db.close();
+	return quantsList;
+}
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+// Getting All C language
+public List<CTable> getAllC(String cat) {
+	List<CTable> cList = new ArrayList<CTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_CLANGUAGE + " where "
+			+ KEY_CCAT + "=" + "'" + cat + "'";
 
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				CTable c = new CTable();
-				c.setID(Integer.parseInt(cursor.getString(0)));
-				c.setQues(cursor.getString(1));
-				c.setCat(cursor.getString(2));
-				c.setOption1(cursor.getString(3));
-				c.setOption2(cursor.getString(4));
-				c.setOption3(cursor.getString(5));
-				c.setOption4(cursor.getString(6));
-				c.setSol(cursor.getString(7));
-				// Adding contact to list
-				cList.add(c);
-			} while (cursor.moveToNext());
-		}
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// return contact list
-		return cList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			CTable c = new CTable();
+			c.setID(Integer.parseInt(cursor.getString(0)));
+			c.setQues(cursor.getString(1));
+			c.setCat(cursor.getString(2));
+			c.setOption1(cursor.getString(3));
+			c.setOption2(cursor.getString(4));
+			c.setOption3(cursor.getString(5));
+			c.setOption4(cursor.getString(6));
+			c.setSol(cursor.getString(7));
+			// Adding contact to list
+			cList.add(c);
+		} while (cursor.moveToNext());
 	}
 
-	public List<CTable> getAllC() {
-		List<CTable> cList = new ArrayList<CTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_CLANGUAGE;
+	// return contact list
+	return cList;
+}
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+public List<CTable> getAllC() {
+	List<CTable> cList = new ArrayList<CTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_CLANGUAGE;
 
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				CTable c = new CTable();
-				c.setID(Integer.parseInt(cursor.getString(0)));
-				c.setQues(cursor.getString(1));
-				c.setCat(cursor.getString(2));
-				c.setOption1(cursor.getString(3));
-				c.setOption2(cursor.getString(4));
-				c.setOption3(cursor.getString(5));
-				c.setOption4(cursor.getString(6));
-				c.setSol(cursor.getString(7));
-				// Adding contact to list
-				cList.add(c);
-			} while (cursor.moveToNext());
-		}
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// return contact list
-		return cList;
-	}
-	// Getting All Cpp language
-	public List<CppTable> getAllCpp(String cat) {
-		List<CppTable> cList = new ArrayList<CppTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_CPPLANGUAGE + " where "
-				+ KEY_CPPCAT + "=" + "'" + cat + "'";
-
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				CppTable cpp = new CppTable();
-				cpp.setID(Integer.parseInt(cursor.getString(0)));
-				cpp.setQues(cursor.getString(1));
-				cpp.setCat(cursor.getString(2));
-				cpp.setOption1(cursor.getString(3));
-				cpp.setOption2(cursor.getString(4));
-				cpp.setOption3(cursor.getString(5));
-				cpp.setOption4(cursor.getString(6));
-				cpp.setSol(cursor.getString(7));
-				// Adding contact to list
-				cList.add(cpp);
-			} while (cursor.moveToNext());
-		}
-
-		// return contact list
-		return cList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			CTable c = new CTable();
+			c.setID(Integer.parseInt(cursor.getString(0)));
+			c.setQues(cursor.getString(1));
+			c.setCat(cursor.getString(2));
+			c.setOption1(cursor.getString(3));
+			c.setOption2(cursor.getString(4));
+			c.setOption3(cursor.getString(5));
+			c.setOption4(cursor.getString(6));
+			c.setSol(cursor.getString(7));
+			// Adding contact to list
+			cList.add(c);
+		} while (cursor.moveToNext());
 	}
 
-	
-	public List<CppTable> getAllCpp() {
-		List<CppTable> cList = new ArrayList<CppTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_CPPLANGUAGE;
+	// return contact list
+	return cList;
+}
+// Getting All Cpp language
+public List<CppTable> getAllCpp(String cat) {
+	List<CppTable> cList = new ArrayList<CppTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_CPPLANGUAGE + " where "
+			+ KEY_CPPCAT + "=" + "'" + cat + "'";
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				CppTable cpp = new CppTable();
-				cpp.setID(Integer.parseInt(cursor.getString(0)));
-				cpp.setQues(cursor.getString(1));
-				cpp.setCat(cursor.getString(2));
-				cpp.setOption1(cursor.getString(3));
-				cpp.setOption2(cursor.getString(4));
-				cpp.setOption3(cursor.getString(5));
-				cpp.setOption4(cursor.getString(6));
-				cpp.setSol(cursor.getString(7));
-				// Adding contact to list
-				cList.add(cpp);
-			} while (cursor.moveToNext());
-		}
-
-		// return contact list
-		return cList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			CppTable cpp = new CppTable();
+			cpp.setID(Integer.parseInt(cursor.getString(0)));
+			cpp.setQues(cursor.getString(1));
+			cpp.setCat(cursor.getString(2));
+			cpp.setOption1(cursor.getString(3));
+			cpp.setOption2(cursor.getString(4));
+			cpp.setOption3(cursor.getString(5));
+			cpp.setOption4(cursor.getString(6));
+			cpp.setSol(cursor.getString(7));
+			// Adding contact to list
+			cList.add(cpp);
+		} while (cursor.moveToNext());
 	}
 
-	// Getting All Java language
-	public List<JavaTable> getAllJava(String cat) {
-		List<JavaTable> jList = new ArrayList<JavaTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_JAVALANGUAGE + " where "
-				+ KEY_JAVACAT + "=" + "'" + cat + "'";;
+	// return contact list
+	return cList;
+}
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
 
-		if (cursor.moveToFirst()) {
-			do {
-				JavaTable j = new JavaTable();
-				j.setID(Integer.parseInt(cursor.getString(0)));
-				j.setQues(cursor.getString(1));
-				j.setCat(cursor.getString(2));
-				j.setOption1(cursor.getString(3));
-				j.setOption2(cursor.getString(4));
-				j.setOption3(cursor.getString(5));
-				j.setOption4(cursor.getString(6));
-				j.setSol(cursor.getString(7));
-				// Adding contact to list
-				jList.add(j);
-			} while (cursor.moveToNext());
-		}
+public List<CppTable> getAllCpp() {
+	List<CppTable> cList = new ArrayList<CppTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_CPPLANGUAGE;
 
-		// return contact list
-		return jList;
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
+
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			CppTable cpp = new CppTable();
+			cpp.setID(Integer.parseInt(cursor.getString(0)));
+			cpp.setQues(cursor.getString(1));
+			cpp.setCat(cursor.getString(2));
+			cpp.setOption1(cursor.getString(3));
+			cpp.setOption2(cursor.getString(4));
+			cpp.setOption3(cursor.getString(5));
+			cpp.setOption4(cursor.getString(6));
+			cpp.setSol(cursor.getString(7));
+			// Adding contact to list
+			cList.add(cpp);
+		} while (cursor.moveToNext());
 	}
 
-	
-	public List<JavaTable> getAllJava() {
-		List<JavaTable> jList = new ArrayList<JavaTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_JAVALANGUAGE;
+	// return contact list
+	return cList;
+}
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+// Getting All Java language
+public List<JavaTable> getAllJava(String cat) {
+	List<JavaTable> jList = new ArrayList<JavaTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_JAVALANGUAGE + " where "
+			+ KEY_JAVACAT + "=" + "'" + cat + "'";;
 
-		if (cursor.moveToFirst()) {
-			do {
-				JavaTable j = new JavaTable();
-				j.setID(Integer.parseInt(cursor.getString(0)));
-				j.setQues(cursor.getString(1));
-				j.setCat(cursor.getString(2));
-				j.setOption1(cursor.getString(3));
-				j.setOption2(cursor.getString(4));
-				j.setOption3(cursor.getString(5));
-				j.setOption4(cursor.getString(6));
-				j.setSol(cursor.getString(7));
-				// Adding contact to list
-				jList.add(j);
-			} while (cursor.moveToNext());
-		}
+			SQLiteDatabase db = this.getWritableDatabase();
+			Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// return contact list
-		return jList;
+			if (cursor.moveToFirst()) {
+				do {
+					JavaTable j = new JavaTable();
+					j.setID(Integer.parseInt(cursor.getString(0)));
+					j.setQues(cursor.getString(1));
+					j.setCat(cursor.getString(2));
+					j.setOption1(cursor.getString(3));
+					j.setOption2(cursor.getString(4));
+					j.setOption3(cursor.getString(5));
+					j.setOption4(cursor.getString(6));
+					j.setSol(cursor.getString(7));
+					// Adding contact to list
+					jList.add(j);
+				} while (cursor.moveToNext());
+			}
+
+			// return contact list
+			return jList;
+}
+
+
+public List<JavaTable> getAllJava() {
+	List<JavaTable> jList = new ArrayList<JavaTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_JAVALANGUAGE;
+
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
+
+	if (cursor.moveToFirst()) {
+		do {
+			JavaTable j = new JavaTable();
+			j.setID(Integer.parseInt(cursor.getString(0)));
+			j.setQues(cursor.getString(1));
+			j.setCat(cursor.getString(2));
+			j.setOption1(cursor.getString(3));
+			j.setOption2(cursor.getString(4));
+			j.setOption3(cursor.getString(5));
+			j.setOption4(cursor.getString(6));
+			j.setSol(cursor.getString(7));
+			// Adding contact to list
+			jList.add(j);
+		} while (cursor.moveToNext());
 	}
 
-	// Getting All HTML language
-	public List<HTMLTable> getAllHTML() {
-		List<HTMLTable> jList = new ArrayList<HTMLTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_HTMLLANGUAGE;
+	// return contact list
+	return jList;
+}
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+// Getting All HTML language
+public List<HTMLTable> getAllHTML() {
+	List<HTMLTable> jList = new ArrayList<HTMLTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_HTMLLANGUAGE;
 
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				HTMLTable j = new HTMLTable();
-				j.setID(Integer.parseInt(cursor.getString(0)));
-				j.setQues(cursor.getString(1));
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-				j.setOption1(cursor.getString(2));
-				j.setOption2(cursor.getString(3));
-				j.setOption3(cursor.getString(4));
-				j.setOption4(cursor.getString(5));
-				j.setSol(cursor.getString(6));
-				// Adding contact to list
-				jList.add(j);
-			} while (cursor.moveToNext());
-		}
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			HTMLTable j = new HTMLTable();
+			j.setID(Integer.parseInt(cursor.getString(0)));
+			j.setQues(cursor.getString(1));
 
-		// return contact list
-		return jList;
+			j.setOption1(cursor.getString(2));
+			j.setOption2(cursor.getString(3));
+			j.setOption3(cursor.getString(4));
+			j.setOption4(cursor.getString(5));
+			j.setSol(cursor.getString(6));
+			// Adding contact to list
+			jList.add(j);
+		} while (cursor.moveToNext());
 	}
 
-	// Getting All VL
-	public List<VLTable> getAllVL(String cat) {
-		List<VLTable> VList = new ArrayList<VLTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_VL + " where "
-				+ KEY_VLCAT + "=" + "'" + cat + "'";
+	// return contact list
+	return jList;
+}
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+// Getting All VL
+public List<VLTable> getAllVL(String cat) {
+	List<VLTable> VList = new ArrayList<VLTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_VL + " where "
+			+ KEY_VLCAT + "=" + "'" + cat + "'";
 
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				VLTable v = new VLTable();
-				v.setID(Integer.parseInt(cursor.getString(0)));
-				v.setQues(cursor.getString(1));
-				v.setCat(cursor.getString(2));
-				v.setOption1(cursor.getString(3));
-				v.setOption2(cursor.getString(4));
-				v.setOption3(cursor.getString(5));
-				v.setOption4(cursor.getString(6));
-				v.setSol(cursor.getString(7));
-				// Adding contact to list
-				VList.add(v);
-			} while (cursor.moveToNext());
-		}
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// return contact list
-		return VList;
-	}
-	
-	public List<VLTable> getAllVL() {
-		List<VLTable> VList = new ArrayList<VLTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_VL;
-
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				VLTable v = new VLTable();
-				v.setID(Integer.parseInt(cursor.getString(0)));
-				v.setQues(cursor.getString(1));
-				v.setCat(cursor.getString(2));
-				v.setOption1(cursor.getString(3));
-				v.setOption2(cursor.getString(4));
-				v.setOption3(cursor.getString(5));
-				v.setOption4(cursor.getString(6));
-				v.setSol(cursor.getString(7));
-				// Adding contact to list
-				VList.add(v);
-			} while (cursor.moveToNext());
-		}
-
-		// return contact list
-		return VList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			VLTable v = new VLTable();
+			v.setID(Integer.parseInt(cursor.getString(0)));
+			v.setQues(cursor.getString(1));
+			v.setCat(cursor.getString(2));
+			v.setOption1(cursor.getString(3));
+			v.setOption2(cursor.getString(4));
+			v.setOption3(cursor.getString(5));
+			v.setOption4(cursor.getString(6));
+			v.setSol(cursor.getString(7));
+			// Adding contact to list
+			VList.add(v);
+		} while (cursor.moveToNext());
 	}
 
-	// Getting All OS
-	public List<OSTable> getAllOS() {
-		List<OSTable> VList = new ArrayList<OSTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_OS;
+	// return contact list
+	return VList;
+}
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+public List<VLTable> getAllVL() {
+	List<VLTable> VList = new ArrayList<VLTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_VL;
 
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				OSTable v = new OSTable();
-				v.setID(Integer.parseInt(cursor.getString(0)));
-				v.setQues(cursor.getString(1));
-				// v.setCat(cursor.getString(2));
-				v.setOption1(cursor.getString(2));
-				v.setOption2(cursor.getString(3));
-				v.setOption3(cursor.getString(4));
-				v.setOption4(cursor.getString(5));
-				v.setSol(cursor.getString(6));
-				// Adding contact to list
-				VList.add(v);
-			} while (cursor.moveToNext());
-		}
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// return contact list
-		return VList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			VLTable v = new VLTable();
+			v.setID(Integer.parseInt(cursor.getString(0)));
+			v.setQues(cursor.getString(1));
+			v.setCat(cursor.getString(2));
+			v.setOption1(cursor.getString(3));
+			v.setOption2(cursor.getString(4));
+			v.setOption3(cursor.getString(5));
+			v.setOption4(cursor.getString(6));
+			v.setSol(cursor.getString(7));
+			// Adding contact to list
+			VList.add(v);
+		} while (cursor.moveToNext());
 	}
 
-	// Getting All puzzle
-	public List<PuzzleTable> getAllPuzzle() {
-		List<PuzzleTable> VList = new ArrayList<PuzzleTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_PUZZLETABLE;
-	
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+	// return contact list
+	return VList;
+}
 
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				
-				PuzzleTable v = new PuzzleTable();
-				v.setID(Integer.parseInt(cursor.getString(0)));
-				v.setQues(cursor.getString(1));
-				// v.setCat(cursor.getString(2));
+// Getting All OS
+public List<OSTable> getAllOS() {
+	List<OSTable> VList = new ArrayList<OSTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_OS;
 
-				v.setSol(cursor.getString(2));
-				// Adding contact to list
-				VList.add(v);
-			} while (cursor.moveToNext());
-		}
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// return contact list
-		return VList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			OSTable v = new OSTable();
+			v.setID(Integer.parseInt(cursor.getString(0)));
+			v.setQues(cursor.getString(1));
+			// v.setCat(cursor.getString(2));
+			v.setOption1(cursor.getString(2));
+			v.setOption2(cursor.getString(3));
+			v.setOption3(cursor.getString(4));
+			v.setOption4(cursor.getString(5));
+			v.setSol(cursor.getString(6));
+			// Adding contact to list
+			VList.add(v);
+		} while (cursor.moveToNext());
 	}
 
-	// Getting All DBMS
-	public List<DBMSTable> getAllDBMS() {
-		List<DBMSTable> VList = new ArrayList<DBMSTable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_DBMS;
+	// return contact list
+	return VList;
+}
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+// Getting All puzzle
+public List<PuzzleTable> getAllPuzzle() {
+	List<PuzzleTable> VList = new ArrayList<PuzzleTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_PUZZLETABLE;
 
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				DBMSTable v = new DBMSTable();
-				v.setID(Integer.parseInt(cursor.getString(0)));
-				v.setQues(cursor.getString(1));
-				// v.setCat(cursor.getString(2));
-				v.setOption1(cursor.getString(2));
-				v.setOption2(cursor.getString(3));
-				v.setOption3(cursor.getString(4));
-				v.setOption4(cursor.getString(5));
-				v.setSol(cursor.getString(6));
-				// Adding contact to list
-				VList.add(v);
-			} while (cursor.moveToNext());
-		}
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// return contact list
-		return VList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+
+			PuzzleTable v = new PuzzleTable();
+			v.setID(Integer.parseInt(cursor.getString(0)));
+			v.setQues(cursor.getString(1));
+			// v.setCat(cursor.getString(2));
+
+			v.setSol(cursor.getString(2));
+			// Adding contact to list
+			VList.add(v);
+		} while (cursor.moveToNext());
 	}
 
-	// Getting All DSA
-	public List<DSATable> getAllDSA() {
-		List<DSATable> VList = new ArrayList<DSATable>();
-		// Select All Query
-		String selectQuery = "SELECT  * FROM " + TABLE_DSA;
+	// return contact list
+	return VList;
+}
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+// Getting All DBMS
+public List<DBMSTable> getAllDBMS() {
+	List<DBMSTable> VList = new ArrayList<DBMSTable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_DBMS;
 
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				DSATable v = new DSATable();
-				v.setID(Integer.parseInt(cursor.getString(0)));
-				v.setQues(cursor.getString(1));
-				// v.setCat(cursor.getString(2));
-				v.setOption1(cursor.getString(2));
-				v.setOption2(cursor.getString(3));
-				v.setOption3(cursor.getString(4));
-				v.setOption4(cursor.getString(5));
-				v.setSol(cursor.getString(6));
-				// Adding contact to list
-				VList.add(v);
-			} while (cursor.moveToNext());
-		}
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-		// return contact list
-		return VList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			DBMSTable v = new DBMSTable();
+			v.setID(Integer.parseInt(cursor.getString(0)));
+			v.setQues(cursor.getString(1));
+			// v.setCat(cursor.getString(2));
+			v.setOption1(cursor.getString(2));
+			v.setOption2(cursor.getString(3));
+			v.setOption3(cursor.getString(4));
+			v.setOption4(cursor.getString(5));
+			v.setSol(cursor.getString(6));
+			// Adding contact to list
+			VList.add(v);
+		} while (cursor.moveToNext());
 	}
 
-	// Getting All Fav
-	public List<Favourite> getAllFav() {
-		List<Favourite> VList = new ArrayList<Favourite>();
-		// Select All Query
-		
-		String selectQuery = "SELECT  * FROM " + TABLE_FAVOURITE;
+	// return contact list
+	return VList;
+}
 
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
+// Getting All DSA
+public List<DSATable> getAllDSA() {
+	List<DSATable> VList = new ArrayList<DSATable>();
+	// Select All Query
+	String selectQuery = "SELECT  * FROM " + TABLE_DSA;
 
-		// looping through all rows and adding to li
-		if (cursor.moveToFirst()) {
-			do {
-				Favourite v = new Favourite();
-				v.setID(Integer.parseInt(cursor.getString(0)));
-				v.setQues(cursor.getString(1));
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
 
-				v.setOption1(cursor.getString(2));
-				v.setOption2(cursor.getString(3));
-				v.setOption3(cursor.getString(4));
-				v.setOption4(cursor.getString(5));
-				v.setSol(cursor.getString(6));
-				// Adding contact to list
-				VList.add(v);
-			} while (cursor.moveToNext());
-		}
-
-		// return contact list
-		return VList;
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			DSATable v = new DSATable();
+			v.setID(Integer.parseInt(cursor.getString(0)));
+			v.setQues(cursor.getString(1));
+			// v.setCat(cursor.getString(2));
+			v.setOption1(cursor.getString(2));
+			v.setOption2(cursor.getString(3));
+			v.setOption3(cursor.getString(4));
+			v.setOption4(cursor.getString(5));
+			v.setSol(cursor.getString(6));
+			// Adding contact to list
+			VList.add(v);
+		} while (cursor.moveToNext());
 	}
 
-	// Updating single Quants
-	public int updateQuants(QuantsTable quants) {
-		SQLiteDatabase db = this.getWritableDatabase();
+	// return contact list
+	return VList;
+}
 
-		ContentValues values = new ContentValues();
-		values.put(KEY_QUANTSQUES, quants.getQues()); // Contact Name
-		values.put(KEY_QUANTSCAT, quants.getCat());
-		values.put(KEY_OPTION1, quants.getOption1());
-		values.put(KEY_OPTION2, quants.getOption2());
-		values.put(KEY_OPTION3, quants.getOption3());
-		values.put(KEY_OPTION4, quants.getOption4());
-		values.put(KEY_QUANTSSOL, quants.getSol());
+// Getting All Fav
+public List<Favourite> getAllFav() {
+	List<Favourite> VList = new ArrayList<Favourite>();
+	// Select All Query
 
-		// updating row
-		return db.update(TABLE_QUANTS, values, KEY_QUANTSID + " = ?",
-				new String[] { String.valueOf(quants.getID()) });
+	String selectQuery = "SELECT  * FROM " + TABLE_FAVOURITE;
+
+	SQLiteDatabase db = this.getWritableDatabase();
+	Cursor cursor = db.rawQuery(selectQuery, null);
+
+	// looping through all rows and adding to li
+	if (cursor.moveToFirst()) {
+		do {
+			Favourite v = new Favourite();
+			v.setID(Integer.parseInt(cursor.getString(0)));
+			v.setQues(cursor.getString(1));
+
+			v.setOption1(cursor.getString(2));
+			v.setOption2(cursor.getString(3));
+			v.setOption3(cursor.getString(4));
+			v.setOption4(cursor.getString(5));
+			v.setSol(cursor.getString(6));
+			// Adding contact to list
+			VList.add(v);
+		} while (cursor.moveToNext());
 	}
 
-	// Updating single C Language
-	public int updateC(CTable c) {
-		SQLiteDatabase db = this.getWritableDatabase();
+	// return contact list
+	return VList;
+}
 
-		ContentValues values = new ContentValues();
-		values.put(KEY_CLANGUAGEQUES, c.getQues()); // Contact Name
-		values.put(KEY_CCAT, c.getCat());
-		values.put(KEY_OPTION1, c.getOption1());
-		values.put(KEY_OPTION2, c.getOption2());
-		values.put(KEY_OPTION3, c.getOption3());
-		values.put(KEY_OPTION4, c.getOption4());
-		values.put(KEY_CPPSOL, c.getSol());
+// Updating single Quants
+public int updateQuants(QuantsTable quants) {
+	SQLiteDatabase db = this.getWritableDatabase();
 
-		// updating row
-		return db.update(TABLE_CLANGUAGE, values, KEY_CLANGUAGEID + " = ?",
-				new String[] { String.valueOf(c.getID()) });
-	}
+	ContentValues values = new ContentValues();
+	values.put(KEY_QUANTSQUES, quants.getQues()); // Contact Name
+	values.put(KEY_QUANTSCAT, quants.getCat());
+	values.put(KEY_OPTION1, quants.getOption1());
+	values.put(KEY_OPTION2, quants.getOption2());
+	values.put(KEY_OPTION3, quants.getOption3());
+	values.put(KEY_OPTION4, quants.getOption4());
+	values.put(KEY_QUANTSSOL, quants.getSol());
 
-	// Updating single Cpp Language
-	public int updateCpp(CppTable c) {
-		SQLiteDatabase db = this.getWritableDatabase();
+	// updating row
+	return db.update(TABLE_QUANTS, values, KEY_QUANTSID + " = ?",
+			new String[] { String.valueOf(quants.getID()) });
+}
 
-		ContentValues values = new ContentValues();
-		values.put(KEY_CPPLANGUAGEQUES, c.getQues()); // Contact Name
-		values.put(KEY_CPPCAT, c.getCat());
-		values.put(KEY_OPTION1, c.getOption1());
-		values.put(KEY_OPTION2, c.getOption2());
-		values.put(KEY_OPTION3, c.getOption3());
-		values.put(KEY_OPTION4, c.getOption4());
-		values.put(KEY_CPPSOL, c.getSol());
+// Updating single C Language
+public int updateC(CTable c) {
+	SQLiteDatabase db = this.getWritableDatabase();
 
-		// updating row
-		return db.update(TABLE_CPPLANGUAGE, values, KEY_CPPLANGUAGEID + " = ?",
-				new String[] { String.valueOf(c.getID()) });
-	}
+	ContentValues values = new ContentValues();
+	values.put(KEY_CLANGUAGEQUES, c.getQues()); // Contact Name
+	values.put(KEY_CCAT, c.getCat());
+	values.put(KEY_OPTION1, c.getOption1());
+	values.put(KEY_OPTION2, c.getOption2());
+	values.put(KEY_OPTION3, c.getOption3());
+	values.put(KEY_OPTION4, c.getOption4());
+	values.put(KEY_CPPSOL, c.getSol());
 
-	// Updating single JAVA Language
-	public int updateJava(JavaTable c) {
-		SQLiteDatabase db = this.getWritableDatabase();
+	// updating row
+	return db.update(TABLE_CLANGUAGE, values, KEY_CLANGUAGEID + " = ?",
+			new String[] { String.valueOf(c.getID()) });
+}
 
-		ContentValues values = new ContentValues();
-		values.put(KEY_JAVALANGUAGEQUES, c.getQues()); // Contact Name
-		values.put(KEY_JAVACAT, c.getCat());
-		values.put(KEY_OPTION1, c.getOption1());
-		values.put(KEY_OPTION2, c.getOption2());
-		values.put(KEY_OPTION3, c.getOption3());
-		values.put(KEY_OPTION4, c.getOption4());
-		values.put(KEY_JAVASOL, c.getSol());
+// Updating single Cpp Language
+public int updateCpp(CppTable c) {
+	SQLiteDatabase db = this.getWritableDatabase();
 
-		// updating row
-		return db.update(TABLE_JAVALANGUAGE, values, KEY_JAVALANGUAGEID
-				+ " = ?", new String[] { String.valueOf(c.getID()) });
-	}
+	ContentValues values = new ContentValues();
+	values.put(KEY_CPPLANGUAGEQUES, c.getQues()); // Contact Name
+	values.put(KEY_CPPCAT, c.getCat());
+	values.put(KEY_OPTION1, c.getOption1());
+	values.put(KEY_OPTION2, c.getOption2());
+	values.put(KEY_OPTION3, c.getOption3());
+	values.put(KEY_OPTION4, c.getOption4());
+	values.put(KEY_CPPSOL, c.getSol());
 
-	// Updating single HTML Language
-	public int updateHTML(HTMLTable c) {
-		SQLiteDatabase db = this.getWritableDatabase();
+	// updating row
+	return db.update(TABLE_CPPLANGUAGE, values, KEY_CPPLANGUAGEID + " = ?",
+			new String[] { String.valueOf(c.getID()) });
+}
 
-		ContentValues values = new ContentValues();
-		values.put(KEY_HTMLLANGUAGEQUES, c.getQues()); // Contact Name
+// Updating single JAVA Language
+public int updateJava(JavaTable c) {
+	SQLiteDatabase db = this.getWritableDatabase();
 
-		values.put(KEY_OPTION1, c.getOption1());
-		values.put(KEY_OPTION2, c.getOption2());
-		values.put(KEY_OPTION3, c.getOption3());
-		values.put(KEY_OPTION4, c.getOption4());
-		values.put(KEY_HTMLSOL, c.getSol());
+	ContentValues values = new ContentValues();
+	values.put(KEY_JAVALANGUAGEQUES, c.getQues()); // Contact Name
+	values.put(KEY_JAVACAT, c.getCat());
+	values.put(KEY_OPTION1, c.getOption1());
+	values.put(KEY_OPTION2, c.getOption2());
+	values.put(KEY_OPTION3, c.getOption3());
+	values.put(KEY_OPTION4, c.getOption4());
+	values.put(KEY_JAVASOL, c.getSol());
 
-		// updating row
-		return db.update(TABLE_HTMLLANGUAGE, values, KEY_HTMLLANGUAGEID
-				+ " = ?", new String[] { String.valueOf(c.getID()) });
-	}
+	// updating row
+	return db.update(TABLE_JAVALANGUAGE, values, KEY_JAVALANGUAGEID
+			+ " = ?", new String[] { String.valueOf(c.getID()) });
+}
 
-	// Updating single VL
-	public int updateVL(VLTable quants) {
-		SQLiteDatabase db = this.getWritableDatabase();
+// Updating single HTML Language
+public int updateHTML(HTMLTable c) {
+	SQLiteDatabase db = this.getWritableDatabase();
 
-		ContentValues values = new ContentValues();
-		values.put(KEY_VLQUES, quants.getQues()); // Contact Name
-		values.put(KEY_VLCAT, quants.getCat());
-		values.put(KEY_OPTION1, quants.getOption1());
-		values.put(KEY_OPTION2, quants.getOption2());
-		values.put(KEY_OPTION3, quants.getOption3());
-		values.put(KEY_OPTION4, quants.getOption4());
-		values.put(KEY_VLSOL, quants.getSol());
+	ContentValues values = new ContentValues();
+	values.put(KEY_HTMLLANGUAGEQUES, c.getQues()); // Contact Name
 
-		// updating row
-		return db.update(TABLE_VL, values, KEY_VLID + " = ?",
-				new String[] { String.valueOf(quants.getID()) });
-	}
+	values.put(KEY_OPTION1, c.getOption1());
+	values.put(KEY_OPTION2, c.getOption2());
+	values.put(KEY_OPTION3, c.getOption3());
+	values.put(KEY_OPTION4, c.getOption4());
+	values.put(KEY_HTMLSOL, c.getSol());
 
-	// Updating single OS
-	public int updateOS(OSTable q) {
-		SQLiteDatabase db = this.getWritableDatabase();
+	// updating row
+	return db.update(TABLE_HTMLLANGUAGE, values, KEY_HTMLLANGUAGEID
+			+ " = ?", new String[] { String.valueOf(c.getID()) });
+}
 
-		ContentValues values = new ContentValues();
-		values.put(KEY_OSQUES, q.getQues()); // Contact Name
+// Updating single VL
+public int updateVL(VLTable quants) {
+	SQLiteDatabase db = this.getWritableDatabase();
 
-		values.put(KEY_OPTION1, q.getOption1());
-		values.put(KEY_OPTION2, q.getOption2());
-		values.put(KEY_OPTION3, q.getOption3());
-		values.put(KEY_OPTION4, q.getOption4());
-		values.put(KEY_OSSOL, q.getSol());
+	ContentValues values = new ContentValues();
+	values.put(KEY_VLQUES, quants.getQues()); // Contact Name
+	values.put(KEY_VLCAT, quants.getCat());
+	values.put(KEY_OPTION1, quants.getOption1());
+	values.put(KEY_OPTION2, quants.getOption2());
+	values.put(KEY_OPTION3, quants.getOption3());
+	values.put(KEY_OPTION4, quants.getOption4());
+	values.put(KEY_VLSOL, quants.getSol());
 
-		// updating row
-		return db.update(TABLE_OS, values, KEY_OSID + " = ?",
-				new String[] { String.valueOf(q.getID()) });
-	}
+	// updating row
+	return db.update(TABLE_VL, values, KEY_VLID + " = ?",
+			new String[] { String.valueOf(quants.getID()) });
+}
 
-	// Updating single DBMS
-	public int updateDBMS(DBMSTable q) {
-		SQLiteDatabase db = this.getWritableDatabase();
+// Updating single OS
+public int updateOS(OSTable q) {
+	SQLiteDatabase db = this.getWritableDatabase();
 
-		ContentValues values = new ContentValues();
-		values.put(KEY_DBMSQUES, q.getQues()); // Contact Name
+	ContentValues values = new ContentValues();
+	values.put(KEY_OSQUES, q.getQues()); // Contact Name
 
-		values.put(KEY_OPTION1, q.getOption1());
-		values.put(KEY_OPTION2, q.getOption2());
-		values.put(KEY_OPTION3, q.getOption3());
-		values.put(KEY_OPTION4, q.getOption4());
-		values.put(KEY_DBMSSOL, q.getSol());
+	values.put(KEY_OPTION1, q.getOption1());
+	values.put(KEY_OPTION2, q.getOption2());
+	values.put(KEY_OPTION3, q.getOption3());
+	values.put(KEY_OPTION4, q.getOption4());
+	values.put(KEY_OSSOL, q.getSol());
 
-		// updating row
-		return db.update(TABLE_DBMS, values, KEY_DBMSID + " = ?",
-				new String[] { String.valueOf(q.getID()) });
-	}
+	// updating row
+	return db.update(TABLE_OS, values, KEY_OSID + " = ?",
+			new String[] { String.valueOf(q.getID()) });
+}
 
-	// Updating single DBMS
-	public int updateDSA(DSATable q) {
-		SQLiteDatabase db = this.getWritableDatabase();
+// Updating single DBMS
+public int updateDBMS(DBMSTable q) {
+	SQLiteDatabase db = this.getWritableDatabase();
 
-		ContentValues values = new ContentValues();
-		values.put(KEY_DSAQUES, q.getQues()); // Contact Name
+	ContentValues values = new ContentValues();
+	values.put(KEY_DBMSQUES, q.getQues()); // Contact Name
 
-		values.put(KEY_OPTION1, q.getOption1());
-		values.put(KEY_OPTION2, q.getOption2());
-		values.put(KEY_OPTION3, q.getOption3());
-		values.put(KEY_OPTION4, q.getOption4());
-		values.put(KEY_DSASOL, q.getSol());
+	values.put(KEY_OPTION1, q.getOption1());
+	values.put(KEY_OPTION2, q.getOption2());
+	values.put(KEY_OPTION3, q.getOption3());
+	values.put(KEY_OPTION4, q.getOption4());
+	values.put(KEY_DBMSSOL, q.getSol());
 
-		// updating row
-		return db.update(TABLE_DBMS, values, KEY_DSAID + " = ?",
-				new String[] { String.valueOf(q.getID()) });
-	}
+	// updating row
+	return db.update(TABLE_DBMS, values, KEY_DBMSID + " = ?",
+			new String[] { String.valueOf(q.getID()) });
+}
 
-	// Deleting single Quants
-	public void deleteQuants(QuantsTable quants) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_QUANTS, KEY_QUANTSID + " = ?",
-				new String[] { String.valueOf(quants.getID()) });
-		db.close();
-	}
+// Updating single DBMS
+public int updateDSA(DSATable q) {
+	SQLiteDatabase db = this.getWritableDatabase();
 
-	// Deleting single clang
-	public void deleteC(CTable c) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_CLANGUAGE, KEY_CLANGUAGEID + " = ?",
-				new String[] { String.valueOf(c.getID()) });
-		db.close();
-	}
+	ContentValues values = new ContentValues();
+	values.put(KEY_DSAQUES, q.getQues()); // Contact Name
 
-	// Deleting single cpplang
-	public void deleteCpp(CppTable c) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_CPPLANGUAGE, KEY_CPPLANGUAGEID + " = ?",
-				new String[] { String.valueOf(c.getID()) });
-		db.close();
-	}
+	values.put(KEY_OPTION1, q.getOption1());
+	values.put(KEY_OPTION2, q.getOption2());
+	values.put(KEY_OPTION3, q.getOption3());
+	values.put(KEY_OPTION4, q.getOption4());
+	values.put(KEY_DSASOL, q.getSol());
 
-	// Deleting single jAVAlang
-	public void deleteJava(JavaTable c) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_JAVALANGUAGE, KEY_JAVALANGUAGEID + " = ?",
-				new String[] { String.valueOf(c.getID()) });
-		db.close();
-	}
+	// updating row
+	return db.update(TABLE_DBMS, values, KEY_DSAID + " = ?",
+			new String[] { String.valueOf(q.getID()) });
+}
 
-	// Deleting single HTMLlang
-	public void deleteHTML(HTMLTable c) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_HTMLLANGUAGE, KEY_HTMLLANGUAGEID + " = ?",
-				new String[] { String.valueOf(c.getID()) });
-		db.close();
-	}
+// Deleting single Quants
+public void deleteQuants(QuantsTable quants) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_QUANTS, KEY_QUANTSID + " = ?",
+			new String[] { String.valueOf(quants.getID()) });
+	db.close();
+}
 
-	// Deleting single VL
-	public void deleteVL(VLTable v) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_VL, KEY_VLID + " = ?",
-				new String[] { String.valueOf(v.getID()) });
-		db.close();
-	}
+// Deleting single clang
+public void deleteC(CTable c) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_CLANGUAGE, KEY_CLANGUAGEID + " = ?",
+			new String[] { String.valueOf(c.getID()) });
+	db.close();
+}
 
-	// Deleting single DBMS
-	public void deleteDBMS(DBMSTable v) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_DBMS, KEY_DBMSID + " = ?",
-				new String[] { String.valueOf(v.getID()) });
-		db.close();
-	}
+// Deleting single cpplang
+public void deleteCpp(CppTable c) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_CPPLANGUAGE, KEY_CPPLANGUAGEID + " = ?",
+			new String[] { String.valueOf(c.getID()) });
+	db.close();
+}
 
-	// Deleting single DSA
-	public void deleteDSA(DSATable v) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_DSA, KEY_DSAID + " = ?",
-				new String[] { String.valueOf(v.getID()) });
-		db.close();
-	}
+// Deleting single jAVAlang
+public void deleteJava(JavaTable c) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_JAVALANGUAGE, KEY_JAVALANGUAGEID + " = ?",
+			new String[] { String.valueOf(c.getID()) });
+	db.close();
+}
 
-	// Deleting single OS
-	public void deleteOS(OSTable v) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_OS, KEY_OSID + " = ?",
-				new String[] { String.valueOf(v.getID()) });
-		db.close();
-	}
+// Deleting single HTMLlang
+public void deleteHTML(HTMLTable c) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_HTMLLANGUAGE, KEY_HTMLLANGUAGEID + " = ?",
+			new String[] { String.valueOf(c.getID()) });
+	db.close();
+}
 
-	// Deleting single fav
-	public void deletefav(Favourite v) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_FAVOURITE, KEY_FAVOURITEID + " = ?",
-				new String[] { String.valueOf(v.getID()) });
-		db.close();
-	}
-	public void deletesb(sbtable v) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_SBTABLE, KEY_SBID + " = ?",
-				new String[] { String.valueOf(v.getID()) });
-		db.close();
-	}
+// Deleting single VL
+public void deleteVL(VLTable v) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_VL, KEY_VLID + " = ?",
+			new String[] { String.valueOf(v.getID()) });
+	db.close();
+}
 
-	// Getting quants count
-	public int getQuantsCount() {
-		String countQuery = "SELECT  * FROM " + TABLE_QUANTS;
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery(countQuery, null);
-		cursor.close();
+// Deleting single DBMS
+public void deleteDBMS(DBMSTable v) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_DBMS, KEY_DBMSID + " = ?",
+			new String[] { String.valueOf(v.getID()) });
+	db.close();
+}
 
-		// return count
-		return cursor.getCount();
-	}
+// Deleting single DSA
+public void deleteDSA(DSATable v) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_DSA, KEY_DSAID + " = ?",
+			new String[] { String.valueOf(v.getID()) });
+	db.close();
+}
 
-	// Getting c lang count
-	public int getCCount() {
-		String countQuery = "SELECT  * FROM " + TABLE_CLANGUAGE;
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery(countQuery, null);
-		cursor.close();
+// Deleting single OS
+public void deleteOS(OSTable v) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_OS, KEY_OSID + " = ?",
+			new String[] { String.valueOf(v.getID()) });
+	db.close();
+}
 
-		// return count
-		return cursor.getCount();
-	}
+// Deleting single fav
+public void deletefav(Favourite v) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_FAVOURITE, KEY_FAVOURITEID + " = ?",
+			new String[] { String.valueOf(v.getID()) });
+	db.close();
+}
+public void deletesb(sbtable v) {
+	SQLiteDatabase db = this.getWritableDatabase();
+	db.delete(TABLE_SBTABLE, KEY_SBID + " = ?",
+			new String[] { String.valueOf(v.getID()) });
+	db.close();
+}
 
-	// Getting cpp lang count
-	public int getCppCount() {
-		String countQuery = "SELECT  * FROM " + TABLE_CPPLANGUAGE;
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery(countQuery, null);
-		cursor.close();
+// Getting quants count
+public int getQuantsCount() {
+	String countQuery = "SELECT  * FROM " + TABLE_QUANTS;
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.rawQuery(countQuery, null);
+	cursor.close();
 
-		// return count
-		return cursor.getCount();
-	}
+	// return count
+	return cursor.getCount();
+}
 
-	// Getting java lang count
-	public int getJavaCount() {
-		String countQuery = "SELECT  * FROM " + TABLE_JAVALANGUAGE;
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery(countQuery, null);
-		cursor.close();
+// Getting c lang count
+public int getCCount() {
+	String countQuery = "SELECT  * FROM " + TABLE_CLANGUAGE;
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.rawQuery(countQuery, null);
+	cursor.close();
 
-		// return count
-		return cursor.getCount();
-	}
+	// return count
+	return cursor.getCount();
+}
 
-	// Getting java lang count
-	public int getHTMLCount() {
-		String countQuery = "SELECT  * FROM " + TABLE_HTMLLANGUAGE;
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery(countQuery, null);
-		cursor.close();
+// Getting cpp lang count
+public int getCppCount() {
+	String countQuery = "SELECT  * FROM " + TABLE_CPPLANGUAGE;
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.rawQuery(countQuery, null);
+	cursor.close();
 
-		// return count
-		return cursor.getCount();
-	}
+	// return count
+	return cursor.getCount();
+}
 
-	// Getting VL count
-	public int getVLCount() {
-		String countQuery = "SELECT  * FROM " + TABLE_VL;
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery(countQuery, null);
-		cursor.close();
+// Getting java lang count
+public int getJavaCount() {
+	String countQuery = "SELECT  * FROM " + TABLE_JAVALANGUAGE;
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.rawQuery(countQuery, null);
+	cursor.close();
 
-		// return count
-		return cursor.getCount();
-	}
+	// return count
+	return cursor.getCount();
+}
 
-	// Getting OScount
-	public int getOSCount() {
-		String countQuery = "SELECT  * FROM " + TABLE_OS;
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery(countQuery, null);
-		cursor.close();
+// Getting java lang count
+public int getHTMLCount() {
+	String countQuery = "SELECT  * FROM " + TABLE_HTMLLANGUAGE;
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.rawQuery(countQuery, null);
+	cursor.close();
 
-		// return count
-		return cursor.getCount();
-	}
+	// return count
+	return cursor.getCount();
+}
 
-	// Getting DBMScount
-	public int getDBMSCount() {
-		String countQuery = "SELECT  * FROM " + TABLE_DBMS;
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery(countQuery, null);
-		cursor.close();
+// Getting VL count
+public int getVLCount() {
+	String countQuery = "SELECT  * FROM " + TABLE_VL;
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.rawQuery(countQuery, null);
+	cursor.close();
 
-		// return count
-		return cursor.getCount();
-	}
+	// return count
+	return cursor.getCount();
+}
 
-	// Getting DSAcount
-	public int getDSACount() {
-		String countQuery = "SELECT  * FROM " + TABLE_DSA;
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery(countQuery, null);
-		cursor.close();
+// Getting OScount
+public int getOSCount() {
+	String countQuery = "SELECT  * FROM " + TABLE_OS;
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.rawQuery(countQuery, null);
+	cursor.close();
 
-		// return count
-		return cursor.getCount();
-	}
+	// return count
+	return cursor.getCount();
+}
 
-	// Getting DSAcount
-	public int getFavCount() {
-	
-		String countQuery = "SELECT  * FROM " + TABLE_FAVOURITE;
-		
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery(countQuery, null);
-		cursor.close();
+// Getting DBMScount
+public int getDBMSCount() {
+	String countQuery = "SELECT  * FROM " + TABLE_DBMS;
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.rawQuery(countQuery, null);
+	cursor.close();
 
-		// return count
-		return cursor.getCount();
-	}
+	// return count
+	return cursor.getCount();
+}
+
+// Getting DSAcount
+public int getDSACount() {
+	String countQuery = "SELECT  * FROM " + TABLE_DSA;
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.rawQuery(countQuery, null);
+	cursor.close();
+
+	// return count
+	return cursor.getCount();
+}
+
+// Getting DSAcount
+public int getFavCount() {
+
+	String countQuery = "SELECT  * FROM " + TABLE_FAVOURITE;
+
+	SQLiteDatabase db = this.getReadableDatabase();
+	Cursor cursor = db.rawQuery(countQuery, null);
+	cursor.close();
+
+	// return count
+	return cursor.getCount();
+}
 
 }
