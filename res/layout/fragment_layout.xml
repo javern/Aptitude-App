@@ -1,54 +1,74 @@
-<com.aptitudeguru.dashboard.DashboardLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+ <com.aptitudeguru.dashboard.DashboardLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="250dp"
     android:layout_height="fill_parent"
     android:layout_weight="1"
     android:background="#F8F8F8" >
+-->
 
-    <!-- News Feed Button -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/homepageScrollview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F8F8F8" >
 
-    <Button
-        android:id="@+id/btn_quants"
-        style="@style/DashboardButton"
-        android:drawableTop="@drawable/quants"
-        android:text="@string/quants" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*" >
 
-    <!-- Friends Button -->
+        <TableRow android:minHeight="150dp" >
 
-    <Button
-        android:id="@+id/btn_language"
-        style="@style/DashboardButton"
-        android:drawableTop="@drawable/language"
-        android:text="@string/language" />
+            <Button
+                android:id="@+id/btn_quants"
+                style="@style/DashboardButton"
+                android:layout_width="0dp"
+                android:drawableTop="@drawable/quants"
+                android:text="@string/quants" />
 
-    <!-- Messages Button -->
+            <Button
+                android:id="@+id/btn_language"
+                style="@style/DashboardButton"
+                android:layout_width="0dp"
+                android:drawableTop="@drawable/language"
+                android:text="@string/language" />
+        </TableRow>
 
-    <Button
-        android:id="@+id/btn_verbal"
-        style="@style/DashboardButton"
-        android:drawableTop="@drawable/verbal"
-        android:text="Verbal And \n Logical" />
+        <TableRow android:minHeight="150dp" >
 
-    <Button
-        android:id="@+id/btn_puzzles"
-        style="@style/DashboardButton"
-        android:drawableTop="@drawable/puzzles"
-        android:text="Brain Teasers" />
+            <Button
+                android:id="@+id/btn_verbal"
+                style="@style/DashboardButton"
+                android:drawableTop="@drawable/verbal"
+                android:text="Verbal And \n Logical" />
 
-    <Button
-        android:id="@+id/btn_compfun"
-        style="@style/DashboardButton"
-        android:drawableTop="@drawable/compfun"
-        android:text="Computer\nFundamentals" />
+            <Button
+                android:id="@+id/btn_puzzles"
+                style="@style/DashboardButton"
+                android:drawableTop="@drawable/puzzles"
+                android:text="Brain Teasers" />
+        </TableRow>
 
-    <!-- Events Button -->
+        <TableRow android:minHeight="150dp" >
+            <Button
+                android:id="@+id/btn_compfun"
+                style="@style/DashboardButton"
+                android:drawableTop="@drawable/compfun"
+                android:text="Computer\nFundamentals" />
 
+            <Button
+                android:id="@+id/btn_allinone"
+                style="@style/DashboardButton"
+                android:drawableTop="@drawable/allinone"
+                android:text="@string/allinone" />
+        </TableRow>
+        
+        <TableRow android:minHeight="150dp" >
+            <Button 
+                android:id="@+id/btn_psycho"
+                style="@style/DashboardButton"
+                android:text="@string/psycho"/>
+            </TableRow>
+    </TableLayout>
 
-    <!-- Photos Button -->
-
-    <Button
-        android:id="@+id/btn_allinone"
-        style="@style/DashboardButton"
-        android:drawableTop="@drawable/allinone"
-        android:text="@string/allinone" />
-
-</com.aptitudeguru.dashboard.DashboardLayout>
+</ScrollView> <!-- </com.aptitudeguru.dashboard.DashboardLayout> -->

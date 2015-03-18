@@ -1,5 +1,7 @@
 package com.aptitudeguru.dashboard;
 
+import java.util.Locale;
+
 public class QuantsTable {
 	
 	int _quantsid;
@@ -10,6 +12,7 @@ public class QuantsTable {
 	String _option3;
 	String _option4;
 	String _sol;
+	private Locale locale;
 
 	public QuantsTable() {
 
@@ -26,6 +29,16 @@ public class QuantsTable {
 		this._option3 = option3;
 		this._option4 = option4;
 		this._sol = sol;
+	}
+	
+	public Locale getLocale()
+	{
+		return locale;
+	}
+	
+	public void setLocale(Locale loc)
+	{
+		locale = loc;
 	}
 	
 	public int getID() {
