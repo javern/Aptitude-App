@@ -4,11 +4,11 @@ public class PsychErrorCheck {
 	
 public static void main(String [] args)
 {
-	if(rangeCheck(4)) {
+	if(rangeCheck("B")) {
 		System.out.println("true");
 	}
 	
-	if (intCheck("6")) {
+	if (intCheck("A")) {
 		System.out.println("Yay!");
 	} else {
 		System.out.println(":(");
@@ -16,11 +16,8 @@ public static void main(String [] args)
 }
 	
 	
-	public static boolean intCheck(String string) {
-		int i;
-		i = Integer.parseInt(string);
-		
-		if(rangeCheck(i)) {
+	public static boolean intCheck(String string) {	
+		if(rangeCheck(string)) {
 			return true;
 		} else {
 			return false;
@@ -28,11 +25,11 @@ public static void main(String [] args)
 }
 
 
-	public static boolean rangeCheck(int temp){
-		if(temp < 1 || temp > 4){
-			return false;
-		} else {
+	public static boolean rangeCheck(String temp){
+		if(temp == "A" || temp == "B" || temp == "C" || temp == "D" ){
 			return true;
+		} else {
+			return false;
 		}
 	}	
 	

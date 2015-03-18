@@ -12,23 +12,23 @@ public class PsyMarking {
 		
 		printAnswerD();
 		
-		markA(4);
-		markB(3);
-		markC(1);
-		markD(2);
+		markA("D");
+		markB("C");
+		markC("A");
+		markD("B");
 		
 	}
 
-	public static void markA(int score) {
-			if(score == 3){
+	public static void markA(String score) {
+			if(score == "C"){
 				System.out.println("You got it right!");
 			} else {
 				System.out.println("Sorry, it's the 3 most effective response, you answered: " + score);
 			}
 	}
 	
-	public static void markB(int score) {
-		if(score == 4){
+	public static void markB(String score) {
+		if(score == "D"){
 			System.out.println("You got it right!");
 		} else {
 			System.out.println("Sorry, it's the 4 most effective response, you answered: " + score);
@@ -36,16 +36,16 @@ public class PsyMarking {
 	}
 	
 	
-	public static void markC(int score) {
-		if(score == 1){
+	public static void markC(String score) {
+		if(score == "A"){
 			System.out.println("You got it right!");
 		} else {
 			System.out.println("Sorry, it's the most effective response, you answered: " + score);
 		}
 	}
 	
-	public static void markD(int score) {
-		if(score == 2){
+	public static void markD(String score) {
+		if(score == "B"){
 			System.out.println("You got it right!");
 		} else {
 			System.out.println("Sorry, it's the 2 most effective response, you answered: " + score);
