@@ -14,10 +14,10 @@ public class JUnitTestPhychTestAnswerInput extends AndroidTestCase
 	@Override
 	protected void setUp() throws Exception
 	{
-		answerA = Psych.answerATextView.getText();
-		answerB = Psych.answerBTextView.getText();
-		answerC = Psych.answerCTextView.getText();
-		answerD = Psych.answerDTextView.getText();
+//		answerA = Psych.answerATextView.getText();
+//		answerB = Psych.answerBTextView.getText();
+//		answerC = Psych.answerCTextView.getText();
+//		answerD = Psych.answerDTextView.getText();
 	}
 	
 	public void testPhychTestAnswerInput()
