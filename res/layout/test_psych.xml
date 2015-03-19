@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Psych_testLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+ 	android:background="#F8F8F8"
+    android:orientation="vertical" >
+    <include
+        android:id="@+id/include1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        layout="@layout/header" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/include1"
+        android:orientation="vertical"
+       	android:background="#F8F8F8" >
+
+        <!-- ScrollView below is where the question is displayed. -->
+       	<ScrollView
+       	    android:id="@+id/scrollView1"
+       	    android:layout_width="match_parent"
+       	    android:layout_height="0dp"
+       	    android:layout_weight="0.30"
+       	    android:background="#F8F8F8" >
+
+       	    <TextView
+       	        android:id="@+id/textView1"
+       	        android:layout_width="wrap_content"
+       	        android:layout_height="wrap_content"
+       	        android:textAppearance="?android:attr/textAppearanceSmall"
+       	        android:textColor="#000000" 
+       	        android:text="@string/psychoDemoQuestion"/>
+       	</ScrollView>
+       	<!-- Border between question and answer section. -->
+       	<View
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:background="@android:color/darker_gray" />
+       	<!-- LinearLayout below is for the answer section. -->
+       	<TextView 
+       	        android:id="@+id/psychQuestion1"
+       	        android:layout_width="wrap_content"
+       	        android:layout_height="wrap_content"
+       	        android:textColor="#000"
+       	        android:textStyle="italic"
+       	        android:text="Answer question below."/>
+       	<LinearLayout
+            android:id="@+id/LinearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="0.28"
+            android:orientation="vertical" 
+              android:background="#F8F8F8">
+       	    <TableLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:stretchColumns="*" >
+		
+		        <TableRow android:minHeight="50dp" >
+		            <EditText 
+		       	        android:id="@+id/psychAnswerBox1"
+		       	        android:layout_height="35dp"
+		       	        android:layout_width="0dp"
+		       	        android:textColor="#000"
+		       	        android:textCursorDrawable="@null"
+		       	        android:maxLength="1"
+		       	        android:hint="1st"/>
+		       	    <EditText 
+		       	        android:id="@+id/psychAnswerBox2"
+		       	        android:layout_height="35dp"
+		       	        android:layout_width="0dp"
+		       	        android:textColor="#000"
+		       	        android:textCursorDrawable="@null"
+		       	        android:maxLength="1"
+		       	        android:hint="2nd"/>
+		        </TableRow>
+		        <TableRow android:minHeight="50dp" >
+		            <EditText 
+		       	        android:id="@+id/psychAnswerBox3"
+		       	        android:layout_height="35dp"
+		       	        android:layout_width="0dp"
+		       	        android:textColor="#000"
+		       	        android:textCursorDrawable="@null"
+		       	        android:maxLength="1"
+		       	        android:hint="3rd"/>
+		       	    <EditText 
+		       	        android:id="@+id/psychAnswerBox4"
+		       	        android:layout_height="35dp"
+		       	        android:layout_width="0dp"
+		       	        android:textColor="#000"
+		       	        android:textCursorDrawable="@null"
+		       	        android:maxLength="1"
+		       	        android:hint="4th"/>
+		        </TableRow>
+	        </TableLayout>
+       	</LinearLayout>
+    </LinearLayout>
+	<include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/include1"
+        layout="@layout/footer_layout" />
+</RelativeLayout>
