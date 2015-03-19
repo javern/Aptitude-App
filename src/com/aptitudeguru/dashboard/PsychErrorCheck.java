@@ -8,7 +8,7 @@ public static void main(String [] args)
 		System.out.println("true");
 	}
 	
-	if (intCheck("A")) {
+	if (errorCheck("A")) {
 		System.out.println("Yay!");
 	} else {
 		System.out.println(":(");
@@ -16,7 +16,7 @@ public static void main(String [] args)
 }
 	
 	
-	public static boolean intCheck(String string) {	
+	public static boolean errorCheck(String string) {	
 		if(rangeCheck(string)) {
 			return true;
 		} else {
