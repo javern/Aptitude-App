@@ -1,23 +1,9 @@
 package com.aptitudeguru.dashboard;
 
 public class PsychErrorCheck {
-	
-public static void main(String [] args)
-{
-	if(rangeCheck("B")) {
-		System.out.println("true");
-	}
-	
-	if (errorCheck("A")) {
-		System.out.println("Yay!");
-	} else {
-		System.out.println(":(");
-	}
-}
-	
-	
-	public static boolean errorCheck(String string) {	
-		if(rangeCheck(string)) {
+		
+	public static boolean checkError(char c) {	
+		if(rangeCheck(c)) {
 			return true;
 		} else {
 			return false;
@@ -25,8 +11,8 @@ public static void main(String [] args)
 }
 
 
-	public static boolean rangeCheck(String temp){
-		if(temp == "A" || temp == "B" || temp == "C" || temp == "D" ){
+	public static boolean rangeCheck(char temp){
+		if(temp == 'A' || temp == 'B' || temp == 'C' || temp == 'D' ){
 			return true;
 		} else {
 			return false;

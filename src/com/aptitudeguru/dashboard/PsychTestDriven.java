@@ -1,37 +1,56 @@
 package com.aptitudeguru.dashboard;
 
+
 public class PsychTestDriven {
 	String testAns = "ABCDEF4312A";
 	boolean moveOn = false;
 	
+	PsychErrorCheck p = new PsychErrorCheck();
+	PsyMarking m = new PsyMarking();
+	
 	public void test(){
 		for (int i = 0; i <= testAns.length(); i++){
 			char t = testAns.charAt(i);
-			checkError();
+			if(p.checkError(t)){
+				System.out.println("Yay!");
+			} else {
+				System.out.println(":(");
+			}
 		}
 	}
 	
 	public void testMarking(){
 		char input = 'A';
 		
-		markA(input);
-		showAnswerorA();
+		m.markA(input);
+		showAnswerA();
 		
-		markB(input);
-		showAnswerorB();
+		m.markB(input);
+		showAnswerB();
 		
-		markC(input);
-		showAnswerorC();
+		m.markC(input);
+		showAnswerC();
 		
-		markD(input);
-		showAnswerorD();
+		m.markD(input);
+		showAnswerD();
 		
 	}
 	
-	public void showAnswer(){
-		System.out.println(printAnswer());
-	}
+	public void showAnswerA(){
+		m.printAnswerA();	
 	}
 	
+	public void showAnswerB(){
+		m.printAnswerB();
+	}
+	
+	public void showAnswerC(){
+		m.printAnswerC();
+	}
+	
+	public void showAnswerD(){
+		m.printAnswerD();
+	}
+		
 	
 }
