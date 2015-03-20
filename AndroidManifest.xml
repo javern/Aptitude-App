@@ -64,6 +64,12 @@
             android:label="Psychometric Test"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- Psychometric Score Page -->
+        <activity
+            android:name="com.aptitudeguru.dashboard.PsychShowScore"
+            android:label="Psychometric Score"
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="com.aptitudeguru.dashboard.TimerActivity"
             android:screenOrientation="portrait" >

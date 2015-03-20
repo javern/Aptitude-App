@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,10 +27,9 @@ import java.util.Random;
 
 import com.aptitudeguru.dashboard.TestPage.MyCountDownTimer;
 
-public class PsychTestPage extends Activity 
-{
+public class PsychTestPage extends Activity {
 	TextView t1, t2;
-	TextView tAnswer1;
+	TextView tAnswer1, tAnswer2, tAnswer3, tAnswer4;
 	int count = 1;
 	int start = 1;
 	int quesvisible = 0;
@@ -55,14 +56,17 @@ public class PsychTestPage extends Activity
 	Button btn_prev;
 
 	DatabaseHandler db = new DatabaseHandler(this);
-	
+
 	public TextView text;
-	
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.test_psych);
 
 		tAnswer1 = (TextView) findViewById(R.id.psychAnswerBox1);
+		tAnswer2 = (TextView) findViewById(R.id.psychAnswerBox2);
+		tAnswer3 = (TextView) findViewById(R.id.psychAnswerBox3);
+		tAnswer4 = (TextView) findViewById(R.id.psychAnswerBox4);
 
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 				context);
@@ -135,18 +139,15 @@ public class PsychTestPage extends Activity
 
 		Button btn_finish = (Button) findViewById(R.id.btn_finish);
 
-/*		// PAUSE TEST CODE
-		Button btn_pause = (Button) findViewById(R.id.btn_pause);
-		btn_pause.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-				// Launching News Feed Screen
-				Intent i = new Intent(getApplicationContext(), TestPause.class);
-				i.putExtra("cat", cat);
-				startActivity(i);
-			}
-		});*/
+		/*
+		 * // PAUSE TEST CODE Button btn_pause = (Button)
+		 * findViewById(R.id.btn_pause); btn_pause.setOnClickListener(new
+		 * View.OnClickListener() {
+		 * 
+		 * @Override public void onClick(View view) { // Launching News Feed
+		 * Screen Intent i = new Intent(getApplicationContext(),
+		 * TestPause.class); i.putExtra("cat", cat); startActivity(i); } });
+		 */
 
 		btn_finish.setOnClickListener(new OnClickListener() {
 
@@ -180,26 +181,12 @@ public class PsychTestPage extends Activity
 										// current activity
 										Intent i = new Intent(
 												getApplicationContext(),
-												ShowScore.class);
-										time = text.getText() + "";
+												PsychShowScore.class);
 
-										sec = sec + 40;
-										String timetaken = min + "." + sec + "";
-
-										double timetak = Float
-												.parseFloat(timetaken);
-
-										double tt = 20.00 - timetak;
-
-										DecimalFormat df = new DecimalFormat(
-												"00.00");
-										String j = df.format(tt);
-
-										i.putExtra("score", ans);
-										i.putExtra("givenans", givenans);
-										i.putExtra("allid", a);
-										i.putExtra("tt", j);
-										i.putExtra("category", cat);
+										i.putExtra("ans", tAnswer1.getText()
+												+ ", " + tAnswer2.getText()
+												+ ", " + tAnswer3.getText()
+												+ ", " + tAnswer4.getText());
 
 										startActivity(i);
 										PsychTestPage.this.finish();
@@ -225,91 +212,169 @@ public class PsychTestPage extends Activity
 
 			}
 		});
-/*
-		// Listening Messages button click
-		btn_hint.setOnClickListener(new View.OnClickListener() {
+
+		btn_home.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View view) {
-				// Launching News Feed Screen
-				Intent i = new Intent(getApplicationContext(), Hint.class);
-				i.putExtra("cat", cat);
+
+				Intent i = new Intent(getApplicationContext(),
+						AndroidDashboardDesignActivity.class);
+				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(i);
 			}
 		});
 
-		// Listening to Places button click
-		btn_goto.setOnClickListener(new View.OnClickListener() {
+		tAnswer1.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void afterTextChanged(Editable s) {
+				PsychErrorCheck psychCheck = new PsychErrorCheck();
+				if (tAnswer1.getText().length() > 0) {
+					if (!psychCheck.checkError(tAnswer1.getText().charAt(0))) 
+					{
+						tAnswer1.setText("");
+					}
+					if(tAnswer1.getText() == tAnswer2.getText()
+									&& tAnswer1.getText() == tAnswer3.getText() && tAnswer1
+									.getText() == tAnswer4.getText())
+					{
+						tAnswer1.setText("");
+					}
+				}
+			}
 
 			@Override
-			public void onClick(View view) {
-				// Launching News Feed Screen
-				Intent i = new Intent(getApplicationContext(), Calender.class);
-				i.putExtra("gotoclick", gotoclick);
-				i.putExtra("click", click);
-				startActivityForResult(i, STATIC_INTEGER_VALUE);
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
 			}
 		});
 
-		// Listening to Events button click
-
-		int g = 0;
-		List<QuantsTable> quants = db.getAllQuants(cat);
-		for (QuantsTable cn : quants) {
-
-			if (g == 38)
-				break;
-			else {
-				g++;
-
-				count = cn.getID();
-				String sol1 = cn.getSol();
-				int sol = 0;
-				if (sol1.equalsIgnoreCase("a"))
-					sol = 1;
-				else if (sol1.equalsIgnoreCase("b"))
-					sol = 2;
-				else if (sol1.equalsIgnoreCase("c"))
-					sol = 3;
-				else
-					sol = 4;
-				// int j=r.nextInt(2);
-				// int k=(count+j+1);
-				// count=k;
-				initial[index3] = count;
-				initans[index3] = sol;
-				index3 = index3 + 1;
+		tAnswer2.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void afterTextChanged(Editable s) {
+				PsychErrorCheck psychCheck = new PsychErrorCheck();
+				if (tAnswer2.getText().length() > 0) {
+					if (!psychCheck.checkError(tAnswer2.getText().charAt(0))
+							|| tAnswer2.getText() == tAnswer1.getText()
+							|| tAnswer2.getText() == tAnswer3.getText()
+							|| tAnswer2.getText() == tAnswer4.getText()) {
+						tAnswer2.setText("");
+					}
+				}
 			}
-		}
 
-		count = r.nextInt(3);
-		count = count + 1;
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
 
-		t1 = (TextView) findViewById(R.id.textView1);
-		t2 = (TextView) findViewById(R.id.questrack);
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+			}
+		});
+		tAnswer3.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void afterTextChanged(Editable s) {
+				PsychErrorCheck psychCheck = new PsychErrorCheck();
+				if (tAnswer3.getText().length() > 0) {
+					if (!psychCheck.checkError(tAnswer3.getText().charAt(0))
+							|| tAnswer3.getText() == tAnswer2.getText()
+							|| tAnswer3.getText() == tAnswer1.getText()
+							|| tAnswer3.getText() == tAnswer4.getText()) {
+						tAnswer3.setText("");
+					}
+				}
+			}
 
-		btn_next = (Button) findViewById(R.id.btn_next);
-		btn_prev = (Button) findViewById(R.id.btn_prev);
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
 
-		QuantsTable q = db.getQuants(initial[count], cat);
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+			}
+		});
+		tAnswer4.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void afterTextChanged(Editable s) {
+				PsychErrorCheck psychCheck = new PsychErrorCheck();
+				if (tAnswer4.getText().length() > 0) {
+					if (!psychCheck.checkError(tAnswer4.getText().charAt(0))
+							|| tAnswer4.getText() == tAnswer2.getText()
+							|| tAnswer4.getText() == tAnswer3.getText()
+							|| tAnswer4.getText() == tAnswer1.getText()) {
+						tAnswer4.setText("");
+					}
+				}
+			}
 
-		a[index++] = initial[count];
-		givenans[0] = initans[count];
-		t2.setText("   " + "1/20");
-		String j = q.getQues();
-		String opt1 = q.getOption1();
-		String opt2 = q.getOption2();
-		String opt3 = q.getOption3();
-		String opt4 = q.getOption4();
-		t1.setText(j);
-		btn_next.setVisibility(View.VISIBLE);
-		btn_prev.setVisibility(View.INVISIBLE);
-		for (int x = 1; x < 20; x++) {
-			int k = (count + 1);
-			count = k;
-			a[index] = initial[k];
-			givenans[index] = initans[k];
-			index = index + 1;
-		}*/
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+			}
+		});
+		/*
+		 * // Listening Messages button click btn_hint.setOnClickListener(new
+		 * View.OnClickListener() {
+		 * 
+		 * @Override public void onClick(View view) { // Launching News Feed
+		 * Screen Intent i = new Intent(getApplicationContext(), Hint.class);
+		 * i.putExtra("cat", cat); startActivity(i); } });
+		 * 
+		 * // Listening to Places button click btn_goto.setOnClickListener(new
+		 * View.OnClickListener() {
+		 * 
+		 * @Override public void onClick(View view) { // Launching News Feed
+		 * Screen Intent i = new Intent(getApplicationContext(),
+		 * Calender.class); i.putExtra("gotoclick", gotoclick);
+		 * i.putExtra("click", click); startActivityForResult(i,
+		 * STATIC_INTEGER_VALUE); } });
+		 * 
+		 * // Listening to Events button click
+		 * 
+		 * int g = 0; List<QuantsTable> quants = db.getAllQuants(cat); for
+		 * (QuantsTable cn : quants) {
+		 * 
+		 * if (g == 38) break; else { g++;
+		 * 
+		 * count = cn.getID(); String sol1 = cn.getSol(); int sol = 0; if
+		 * (sol1.equalsIgnoreCase("a")) sol = 1; else if
+		 * (sol1.equalsIgnoreCase("b")) sol = 2; else if
+		 * (sol1.equalsIgnoreCase("c")) sol = 3; else sol = 4; // int
+		 * j=r.nextInt(2); // int k=(count+j+1); // count=k; initial[index3] =
+		 * count; initans[index3] = sol; index3 = index3 + 1; } }
+		 * 
+		 * count = r.nextInt(3); count = count + 1;
+		 * 
+		 * t1 = (TextView) findViewById(R.id.textView1); t2 = (TextView)
+		 * findViewById(R.id.questrack);
+		 * 
+		 * btn_next = (Button) findViewById(R.id.btn_next); btn_prev = (Button)
+		 * findViewById(R.id.btn_prev);
+		 * 
+		 * QuantsTable q = db.getQuants(initial[count], cat);
+		 * 
+		 * a[index++] = initial[count]; givenans[0] = initans[count];
+		 * t2.setText("   " + "1/20"); String j = q.getQues(); String opt1 =
+		 * q.getOption1(); String opt2 = q.getOption2(); String opt3 =
+		 * q.getOption3(); String opt4 = q.getOption4(); t1.setText(j);
+		 * btn_next.setVisibility(View.VISIBLE);
+		 * btn_prev.setVisibility(View.INVISIBLE); for (int x = 1; x < 20; x++)
+		 * { int k = (count + 1); count = k; a[index] = initial[k];
+		 * givenans[index] = initans[k]; index = index + 1; }
+		 */
 	}
 }

@@ -12,7 +12,7 @@ public class PsychErrorCheck {
 
 
 	public static boolean rangeCheck(char temp){
-		if(temp == 'A' || temp == 'B' || temp == 'C' || temp == 'D' ){
+		if(temp == 'a' || temp == 'A' || temp == 'b' || temp == 'B' || temp == 'c' || temp == 'C' || temp == 'd' || temp == 'D' ){
 			return true;
 		} else {
 			return false;
