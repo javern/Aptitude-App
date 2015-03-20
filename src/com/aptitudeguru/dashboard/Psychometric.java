@@ -31,6 +31,7 @@ public class Psychometric extends Activity {
 		Button btn_tutorial = (Button) findViewById(R.id.btn_soundon);
 		Button btn_about = (Button) findViewById(R.id.btn_about);
 		Button btn_help = (Button) findViewById(R.id.btn_help);
+		Button btn_startTest = (Button) findViewById(R.id.btn_psychotest);
 		
 		btn_home.setOnClickListener(new View.OnClickListener() {
 
@@ -92,6 +93,18 @@ public class Psychometric extends Activity {
   			
   				Intent i = new Intent(getApplicationContext(),
   					Help.class);
+
+  				startActivity(i);
+  			}
+  		});
+		
+		btn_startTest.setOnClickListener(new View.OnClickListener() {
+
+  			@Override
+  			public void onClick(View view) {
+  			
+  				Intent i = new Intent(getApplicationContext(),
+  					PsychTestPage.class);
 
   				startActivity(i);
   			}

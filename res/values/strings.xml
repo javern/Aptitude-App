@@ -75,5 +75,15 @@
     <string name="head">Aptitude Guru</string>
     <string name="psycho">Psychometric</string>
     <string name="psychotest">Psychometric Test</string>
-
+	<string name="psychoDemoQuestion">You are a Human Resources (HR) 
+	Assistant working in the HR Department of a busy NHS Hospital Trust.
+	The hospital is the Princess Aurora General in Saldringham City.\n\n Your 
+	role is to carry out administrative tasks to support the HR 
+	activities required in the Trust. You organise and support 
+	recruitment, book training courses, provide secretarial support at 
+	disciplinary investigations and keep personnel records for all 
+	medical and non-medical staff up to date including pay and conditions 
+	information.\n\n You report to one of two HR Managers who in turn report 
+	to the HR Director. Your manager is called Fiona Potter.	
+	</string>
 </resources>
