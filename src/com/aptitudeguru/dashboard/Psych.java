@@ -9,6 +9,8 @@ public class Psych extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.psych);
 	}
-
+		
+	
+	
 	
 }
