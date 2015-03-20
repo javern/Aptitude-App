@@ -2,33 +2,16 @@ package com.aptitudeguru.dashboard;
 
 public class PsyMarking {
 	
-	public static void main(String [] args)
-	{
-		printAnswerA();
-		
-		printAnswerB();
-		
-		printAnswerC();
-		
-		printAnswerD();
-		
-		markA(4);
-		markB(3);
-		markC(1);
-		markD(2);
-		
-	}
-
-	public static void markA(int score) {
-			if(score == 3){
+	public static void markA(char score) {
+			if(score == 'C'){
 				System.out.println("You got it right!");
 			} else {
 				System.out.println("Sorry, it's the 3 most effective response, you answered: " + score);
 			}
 	}
 	
-	public static void markB(int score) {
-		if(score == 4){
+	public static void markB(char score) {
+		if(score == 'D'){
 			System.out.println("You got it right!");
 		} else {
 			System.out.println("Sorry, it's the 4 most effective response, you answered: " + score);
@@ -36,16 +19,16 @@ public class PsyMarking {
 	}
 	
 	
-	public static void markC(int score) {
-		if(score == 1){
+	public static void markC(char score) {
+		if(score == 'A'){
 			System.out.println("You got it right!");
 		} else {
 			System.out.println("Sorry, it's the most effective response, you answered: " + score);
 		}
 	}
 	
-	public static void markD(int score) {
-		if(score == 2){
+	public static void markD(char score) {
+		if(score == 'B'){
 			System.out.println("You got it right!");
 		} else {
 			System.out.println("Sorry, it's the 2 most effective response, you answered: " + score);

@@ -52,6 +52,7 @@
             android:label="All in One Test"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- Psychometric Menu -->
         <activity
             android:name="com.aptitudeguru.dashboard.PDFReader"
             android:label="Tutorial"
@@ -59,7 +60,19 @@
         </activity>
         <activity
             android:name="com.aptitudeguru.dashboard.Psychometric"
+            android:label="Psychometric Menu"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- Psychometric Test Page -->
+        <activity
+            android:name="com.aptitudeguru.dashboard.PsychTestPage"
             android:label="Psychometric Test"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- Psychometric Score Page -->
+        <activity
+            android:name="com.aptitudeguru.dashboard.PsychShowScore"
+            android:label="Psychometric Score"
             android:screenOrientation="portrait" >
         </activity>
         <activity

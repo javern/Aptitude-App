@@ -75,5 +75,67 @@
     <string name="head">Aptitude Guru</string>
     <string name="psycho">Psychometric</string>
     <string name="psychotest">Psychometric Test</string>
-
+	<string name="psychoDemoQuestion">
+		<b>Scenario</b>\n\n
+		You are a Human Resources (HR) 
+		Assistant working in the HR Department of a busy NHS Hospital Trust.
+		The hospital is the Princess Aurora General in Saldringham City.\n\n Your 
+		role is to carry out administrative tasks to support the HR 
+		activities required in the Trust. You organise and support 
+		recruitment, book training courses, provide secretarial support at 
+		disciplinary investigations and keep personnel records for all 
+		medical and non-medical staff up to date including pay and conditions 
+		information.\n\n You report to one of two HR Managers who in turn report 
+		to the HR Director. Your manager is called Fiona Potter.\n\n
+		<b>Situation</b>\n\n
+		It is three days after an interview process was held to appoint a new Consultant 
+		Ophthalmologist for the hospital. This Consultant will be the most senior medical 
+		person in the Ophthalmology (eye) department and in charge of three Senior 
+		Registrars, two Registrars and Two House Officers – these are all junior doctors. 
+		Consultant posts are rarely available as once people gain such a post they often 
+		stay until they retire and there is lots of competition to gain a medical post at 
+		the Trust, let alone a Consultant post with its associated security, status and 
+		generous pay.\n\n
+		Two internal; candidates plus an external candidate were interviews for the post and 
+		the role was given to one of the internal candidates. The person appointed was 
+		less experienced, in terms of their years as a Senior Registrar, than the other 
+		two candidates but they were considered to be more ‘high-flying’, academically 
+		gifted and to possess more impressive leadership skills than the other two.\n\n
+		Mr Brian Bowler, the internal rejected candidate, has come to your office this 
+		morning and is complaining bitterly about the decision. You were the one who wrote 
+		the letters informing candidates of the decision. Mr Bowler is angry and feels unfairly 
+		treated as he has more experience than Vijay Singh, the appointed candidate.\n\n
+		Review the following responses A to D and indicate whether you believe the response to be 1 
+		– the most effective response, 2 – the second most effective response, 3 – the third most 
+		effective response or 4 – the least effective response. You may assign each rating only once.
+		\n\n
+		<b>Responses</b>\n\n
+		<b>A</b> - Tell Mr Bowler that the process was fair and the hospital has to make sure that it 
+		appoints the right person for the job, and not the one who has been around for the longest.\n\n
+		<b>B</b> - Say that the interview board felt that Mr Singh was better academically and had 
+		better leadership skills and that the final decision was not based on experience alone.\n\n
+		<b>C</b> – Say to Mr Bowler that you can see why he is disappointed. State that the process 
+		was stringently fair and that he could seek full details of the reason for the decision and 
+		other developmental feedback from the interviews if he would like to.\n\n
+		<b>D</b> – Offer him a cup of tea and say that you can understand why he is upset. Let him 
+		have a bit of a moan to you and get it out of his system.
+	</string>
+	<string name="psychoCorrectAnswer">
+	    <b>C</b> – The most effective response. You are emphasising with Mr Bowler but 
+	    not supporting his negative view of the process. You are encouraging him to seek 
+	    more information and feedback as to why he didn’t get the job which may help him 
+	    develop and continue to contribute well to the department and the hospital.\n\n
+	    <b>D</b> – The second most effective response. You are being sympathetic and 
+	    friendly, although you are not helping him ‘move on’. Also there is a danger he 
+	    may interpret your sympathy as support for his point of view.\n\n
+	    <b>A</b> – The third most effective response. Although this is all perfectly true, 
+	    it is a little insensitive and you are likely to alienate Mr Bowler and as he is 
+	    still an employee at the hospital this may not be sensible.\n\n
+	    <b>B</b> – The least effective response. Since you are only an assistant it is not 
+	    your role to give such feedback to Mr Bowler, which may be counterproductive. You 
+	    should also be encouraging him to seek feedback from the interviewers directly. 
+	    Also, Mr Bowler needs to be given a fully-rounded picture of his performance at the 
+	    interview and why the interviewers felt that they wouldn’t offer him the job on this 
+	    occasion.
+	</string>
 </resources>
