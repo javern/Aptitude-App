@@ -25,8 +25,6 @@ import androidhive.dashboard.R;
 
 public class Tutorialpage extends Activity implements OnTouchListener {
 
-
-	WebView webView;
 	final static float STEP = 200;
 	TextView mytv;
 	float mRatio = 1.0f;
@@ -64,7 +62,7 @@ public class Tutorialpage extends Activity implements OnTouchListener {
 
 
 	public void pdfcommon(String temp) {
-    setContentView(R.layout.webview);
+    /*setContentView(R.layout.webview);
 	webView = (WebView) findViewById(R.id.webView1);
 	WebSettings settings = webView.getSettings();
 	settings.setJavaScriptEnabled(true);
@@ -73,7 +71,7 @@ public class Tutorialpage extends Activity implements OnTouchListener {
 	settings.setAllowUniversalAccessFromFileURLs(true);
 	settings.setBuiltInZoomControls(true);
 	webView.setWebChromeClient(new WebChromeClient());
-	webView.loadUrl("file:///android_asset/pdfviewer/index.html?pdf=" + temp);
+	webView.loadUrl("file:///android_asset/pdfviewer/index.html?pdf=" + temp);*/
 	}
 
 	private void copyFile(InputStream in, OutputStream out) throws IOException {
@@ -199,108 +197,16 @@ public class Tutorialpage extends Activity implements OnTouchListener {
 				startActivity(i);
 			}
 		});
-		btn_c.setOnClickListener(new View.OnClickListener() {
 
 
-
-
-			@Override
-			public void onClick(View view) {
-
-
-				pdfcommon("ctuts.pdf");
-
-
-
-
-			}});
-
-
-		btn_cpp.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-
-				pdfcommon("cpp.pdf");
-
-
-
-			}
-		});
-		btn_java.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-
-				pdfcommon("java.pdf");	
-
-
-			}
-		});
-
-		btn_os.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-
-
-				pdfcommon("OS.pdf");
-
-
-			}
-		});
-		btn_dbms.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-
-
-				pdfcommon("database.pdf");
-
-
-			}
-		});
-
-		btn_dsa.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-
-
-				pdfcommon("DataStructure.pdf");
-
-
-
-			}
-		});
-
-		btn_html.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-
-				pdfcommon("HTML.pdf");
-
-
-
-
-			}
-		});
-		btn_interview.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View view) {
-
-				pdfcommon("Interview.pdf");
-
-			}
-
-
-		});
-
-
-
-
+			PDFReader.bindPDFButton(this, R.id.btn_score_c, "ctuts.pdf");
+			PDFReader.bindPDFButton(this, R.id.btn_score_c, "ctuts.pdf");
+			PDFReader.bindPDFButton(this, R.id.btn_score_java, "java.pdf");
+			PDFReader.bindPDFButton(this, R.id.btn_score_html, "HTML.pdf");
+			PDFReader.bindPDFButton(this, R.id.btn_score_os, "OS.pdf");
+			PDFReader.bindPDFButton(this, R.id.btn_score_dbms, "database.pdf");
+			PDFReader.bindPDFButton(this, R.id.btn_score_datastructure, "DataStructure.pdf");
+			PDFReader.bindPDFButton(this, R.id.btn_score_interview, "Interview.pdf");
 
 	}
 
