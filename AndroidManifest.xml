@@ -53,6 +53,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.aptitudeguru.dashboard.PDFReader"
+            android:label="Tutorial"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.aptitudeguru.dashboard.Psychometric"
             android:label="Psychometric Test"
             android:screenOrientation="portrait" >
